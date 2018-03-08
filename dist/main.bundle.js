@@ -453,7 +453,7 @@ module.exports = ""
 /***/ "./src/app/mission-page/mission-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  mission-page works!\n</p>\n"
+module.exports = "<p>\n  Mission Statement......\n</p>\n"
 
 /***/ }),
 
