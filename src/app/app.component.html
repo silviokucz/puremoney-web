@@ -1,9 +1,21 @@
 <div class="allPages">
 
-<div class="logo">
-  <a href="/">{{title}}</a>
-</div>
-<app-nav-bar></app-nav-bar>
-<br>
-<router-outlet></router-outlet>
+  <div *ngIf="getUser() === null" class="login">
+    <a href="/login/">
+      <button [disabled]="loading" class="btn btn-primary">Login</button>
+    </a>
+    <br>
+    <a href="/register/">Register</a>
+  </div>
+  <div *ngIf="getUser() !== null" class="login">
+    <button (click)="logout()" class="btn btn-primary">Logout ({{getUser().username}})</button>
+  </div>
+
+  <div class="logo">
+    <a href="/">{{title}}</a>
+  </div>
+
+  <app-nav-bar></app-nav-bar>
+  <br>
+  <router-outlet></router-outlet>
 </div>

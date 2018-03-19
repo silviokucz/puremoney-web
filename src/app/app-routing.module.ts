@@ -1,3 +1,5 @@
+import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthGuardService } from './services/auth-guard.service';
 import { BuyPmtpageComponent } from './buy-pmtpage/buy-pmtpage.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
@@ -7,6 +9,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AppComponent } from './app.component';
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
+import { RegisterPageComponent } from './register-page/register-page.component';
 
 
 const routes: Routes = [
@@ -24,12 +27,15 @@ const routes: Routes = [
       },    {
         path: 'contact', component: ContactPageComponent
       },    {
-        path: 'pmt', component: BuyPmtpageComponent
+        path: 'pmt', component: BuyPmtpageComponent, canActivate: [AuthGuardService]
       },
   ]
   },
   {
-    path: '', component:AppComponent,
+    path: 'login', component:LoginPageComponent
+  },
+  {
+    path: 'register', component:RegisterPageComponent    
   }
 ];
 
