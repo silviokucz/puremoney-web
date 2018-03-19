@@ -5,10 +5,10 @@
       <button [disabled]="loading" class="btn btn-primary">Login</button>
     </a>
     <br>
-    <a href="/register/">Register</a>
+    <a href="/register-user/">Register</a>
   </div>
   <div *ngIf="getUser() !== null" class="login">
-    <button (click)="logout()" class="btn btn-primary">Logout ({{getUser().username}})</button>
+    <button (click)="logout()" class="btn btn-primary">Logout ({{getUser().email}})</button>
   </div>
 
   <div class="logo">

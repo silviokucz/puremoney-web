@@ -7,10 +7,10 @@ import { GeoAddressGeoCode } from '../../models/geoAddressGeoCode';
 
 @Component({
   selector: 'app-register-page',
-  templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.css']
+  templateUrl: './register-evangelist-page.component.html',
+  styleUrls: ['./register-evangelist-page.component.css']
 })
-export class RegisterPageComponent implements OnInit {
+export class RegisterEvngelistPageComponent implements OnInit {
 
   evangelist: Evangelist;
     loading = false;
@@ -34,7 +34,7 @@ export class RegisterPageComponent implements OnInit {
       this.evangelist.geoAddress.country = '';
     }
 
-    this.userService.create(this.evangelist)
+    this.userService.createEvangelist(this.evangelist)
         .then(
             data => {
                 

@@ -16,7 +16,8 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { BuyPmtpageComponent } from './buy-pmtpage/buy-pmtpage.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { RegisterPageComponent } from './register-page/register-page.component';
+import { RegisterEvngelistPageComponent } from './register-evangelist-page/register-evangelist-page.component';
+import { RegisterUserPageComponent } from './register-user-page/register-user-page.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RegisterPageComponent } from './register-page/register-page.component';
     BuyPmtpageComponent,
     FooterComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterEvngelistPageComponent,
+    RegisterUserPageComponent
   ],
   imports: [
     BrowserModule,

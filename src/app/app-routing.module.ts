@@ -9,7 +9,8 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AppComponent } from './app.component';
 import {NgModule} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
-import { RegisterPageComponent } from './register-page/register-page.component';
+import { RegisterEvngelistPageComponent } from './register-evangelist-page/register-evangelist-page.component';
+import { RegisterUserPageComponent } from './register-user-page/register-user-page.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,10 @@ const routes: Routes = [
     path: 'login', component:LoginPageComponent
   },
   {
-    path: 'register', component:RegisterPageComponent    
+    path: 'register-user', component:RegisterUserPageComponent    
+  },
+  {
+    path: 'register-evangelist', component:RegisterEvngelistPageComponent    
   }
 ];
 

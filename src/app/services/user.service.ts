@@ -8,7 +8,7 @@ import { GeoAddressGeoCode } from '../../models/geoAddressGeoCode';
 @Injectable()
 export class UserService {
 
-  public user: User = null;
+  public user: User;
 
   constructor(private http: Http) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
@@ -16,9 +16,10 @@ export class UserService {
 
   login(username: string, password: string) {
 
-    localStorage.setItem('currentUser', JSON.stringify({ token: 'abc123', username: username }));
     this.user = new User();
-    this.user.username = username;
+    this.user.email = username;
+    localStorage.setItem('currentUser', JSON.stringify(this.user));
+    
 
     // return this.http.post('/api/authenticate', { username: username, password: password })
     // .toPromise()
@@ -40,7 +41,7 @@ export class UserService {
     this.user = null;
   }
 
-  create(evangelist: Evangelist) {
+  createEvangelist(evangelist: Evangelist) {
 
     evangelist.id = 0;
     evangelist.status = 0;
@@ -68,9 +69,12 @@ export class UserService {
         .then()
 
       });
+  }
 
-
-
+  createUser(user: User){
+    return this.http.post('https://api.puremoney.tech/api/v1/Account/Register', user)
+        .toPromise()
+        .then()
   }
 
   private getGeoCode(address: string) {

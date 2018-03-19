@@ -23,7 +23,7 @@ export class BuyPmtpageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.router.navigate(['/register'])
+    this.router.navigate(['/register-evangelist'])
 
   }
 
