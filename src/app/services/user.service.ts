@@ -3,23 +3,90 @@ import { Http, RequestOptions, RequestOptionsArgs, Headers } from "@angular/http
 import { Evangelist } from '../../models/evangelist ';
 import { User } from '../../models/user';
 import { GeoAddressGeoCode } from '../../models/geoAddressGeoCode';
+import { Observable } from 'rxjs/Observable';
 
+declare var require: any;
 
 @Injectable()
 export class UserService {
 
-  public user: User;
+  public user: User = null;
 
   constructor(private http: Http) {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    let token = JSON.parse(localStorage.getItem('accessToken'));
+    if (token) {
+      this.user = new User();
+      this.user.email = token.token.userName;
+    }
   }
+
+  // Set the configuration settings
+  private credentials = {
+    client: {
+      id: 'someMachineId',
+      secret: 'machineSecret'
+    },
+    auth: {
+      tokenHost: 'https://api.puremoney.tech',
+      tokenPath: '/token'
+    }
+  };
+
+  url: string = this.credentials.auth.tokenHost;
+
+  oauth2 = require('simple-oauth2').create(this.credentials);
+
 
   login(username: string, password: string) {
 
-    this.user = new User();
-    this.user.email = username;
-    localStorage.setItem('currentUser', JSON.stringify(this.user));
-    
+    let tokenConfig = {
+      username: username,
+      password: password
+    };
+
+    // this.user = new User();
+    // this.user.email = username;
+    // localStorage.setItem('currentUser', JSON.stringify(this.user));
+
+
+    if (username === null || password === null) {
+      return Promise.reject("Please type username and password.");
+    } else {
+      tokenConfig.username = username;
+      tokenConfig.password = password;
+
+      return this.oauth2.ownerPassword
+        .getToken(tokenConfig)
+        .then((result) => {
+          const accessToken = this.oauth2.accessToken.create(result);
+          //  console.log('accessToken var: ', accessToken);
+          //  return accessToken;
+          //})
+          //.then((accessToken) => {
+
+          //set to storage for later use
+          localStorage.setItem(`accessToken`, JSON.stringify(accessToken));
+          console.log('accessToken in storage: ', localStorage.getItem(`accessToken`));
+
+          this.user = new User();
+          this.user.email = accessToken.token.userName;
+
+          return accessToken;
+        }, err => {
+          console.log('access token error ', err)
+          return Promise.reject(JSON.stringify(err));
+        }
+        );
+    }
+
+
+
+
+
+
+
+
+
 
     // return this.http.post('/api/authenticate', { username: username, password: password })
     // .toPromise()
@@ -37,7 +104,7 @@ export class UserService {
 
   logout() {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('accessToken');
     this.user = null;
   }
 
@@ -65,16 +132,16 @@ export class UserService {
           res.resourceSets[0].resources[0].address.countryRegion;
 
         return this.http.post('https://api.puremoney.tech/api/v1/database/evangelist', evangelist)
-        .toPromise()
-        .then()
+          .toPromise()
+          .then()
 
       });
   }
 
-  createUser(user: User){
+  createUser(user: User) {
     return this.http.post('https://api.puremoney.tech/api/v1/Account/Register', user)
-        .toPromise()
-        .then()
+      .toPromise()
+      .then()
   }
 
   private getGeoCode(address: string) {

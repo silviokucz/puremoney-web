@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+    selector: 'app-login-page',
+    templateUrl: './login-page.component.html',
+    styleUrls: ['./login-page.component.css']
 })
 export class LoginPageComponent implements OnInit {
 
-  model: any = {};
+    model: any = {};
     loading = false;
     returnUrl: string;
 
@@ -29,15 +29,15 @@ export class LoginPageComponent implements OnInit {
     login() {
         this.loading = true;
         this.userService.login(this.model.username, this.model.password)
-        this.router.navigate([this.returnUrl]);
-            // .then(
-            //     data => {
-            //         this.router.navigate([this.returnUrl]);
-            //     },
-            //     error => {
-            //         // this.alertService.error(error);
-            //         this.loading = false;
-            //     });
+            .then(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    alert(error);
+                    this.loading = false;
+                    this.model = {};
+                });
     }
 
 }

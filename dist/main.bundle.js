@@ -1,5 +1,31 @@
 webpackJsonp(["main"],{
 
+/***/ "./node_modules/har-validator/node_modules/ajv/lib recursive":
+/***/ (function(module, exports) {
+
+function webpackEmptyContext(req) {
+	throw new Error("Cannot find module '" + req + "'.");
+}
+webpackEmptyContext.keys = function() { return []; };
+webpackEmptyContext.resolve = webpackEmptyContext;
+module.exports = webpackEmptyContext;
+webpackEmptyContext.id = "./node_modules/har-validator/node_modules/ajv/lib recursive";
+
+/***/ }),
+
+/***/ "./node_modules/har-validator/node_modules/ajv/lib/compile recursive":
+/***/ (function(module, exports) {
+
+function webpackEmptyContext(req) {
+	throw new Error("Cannot find module '" + req + "'.");
+}
+webpackEmptyContext.keys = function() { return []; };
+webpackEmptyContext.resolve = webpackEmptyContext;
+module.exports = webpackEmptyContext;
+webpackEmptyContext.id = "./node_modules/har-validator/node_modules/ajv/lib/compile recursive";
+
+/***/ }),
+
 /***/ "./src/$$_gendir lazy recursive":
 /***/ (function(module, exports) {
 
@@ -616,17 +642,16 @@ var LoginPageComponent = (function () {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     };
     LoginPageComponent.prototype.login = function () {
+        var _this = this;
         this.loading = true;
-        this.userService.login(this.model.username, this.model.password);
-        this.router.navigate([this.returnUrl]);
-        // .then(
-        //     data => {
-        //         this.router.navigate([this.returnUrl]);
-        //     },
-        //     error => {
-        //         // this.alertService.error(error);
-        //         this.loading = false;
-        //     });
+        this.userService.login(this.model.username, this.model.password)
+            .then(function (data) {
+            _this.router.navigate([_this.returnUrl]);
+        }, function (error) {
+            alert(error);
+            _this.loading = false;
+            _this.model = {};
+        });
     };
     return LoginPageComponent;
 }());
@@ -959,7 +984,8 @@ var AuthGuardService = (function () {
         this.router = router;
     }
     AuthGuardService.prototype.canActivate = function (route, state) {
-        if (localStorage.getItem('currentUser')) {
+        var token = localStorage.getItem('accessToken');
+        if (token) {
             // logged in so return true
             return true;
         }
@@ -1002,12 +1028,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UserService = (function () {
     function UserService(http) {
         this.http = http;
-        this.user = JSON.parse(localStorage.getItem('currentUser'));
+        this.user = null;
+        // Set the configuration settings
+        this.credentials = {
+            client: {
+                id: 'someMachineId',
+                secret: 'machineSecret'
+            },
+            auth: {
+                tokenHost: 'https://api.puremoney.tech',
+                tokenPath: '/token'
+            }
+        };
+        this.url = this.credentials.auth.tokenHost;
+        this.oauth2 = __webpack_require__("./node_modules/simple-oauth2/index.js").create(this.credentials);
+        var token = JSON.parse(localStorage.getItem('accessToken'));
+        if (token) {
+            this.user = new __WEBPACK_IMPORTED_MODULE_2__models_user__["a" /* User */]();
+            this.user.email = token.token.userName;
+        }
     }
     UserService.prototype.login = function (username, password) {
-        this.user = new __WEBPACK_IMPORTED_MODULE_2__models_user__["a" /* User */]();
-        this.user.email = username;
-        localStorage.setItem('currentUser', JSON.stringify(this.user));
+        var _this = this;
+        var tokenConfig = {
+            username: username,
+            password: password
+        };
+        // this.user = new User();
+        // this.user.email = username;
+        // localStorage.setItem('currentUser', JSON.stringify(this.user));
+        if (username === null || password === null) {
+            return Promise.reject("Please type username and password.");
+        }
+        else {
+            tokenConfig.username = username;
+            tokenConfig.password = password;
+            return this.oauth2.ownerPassword
+                .getToken(tokenConfig)
+                .then(function (result) {
+                var accessToken = _this.oauth2.accessToken.create(result);
+                //  console.log('accessToken var: ', accessToken);
+                //  return accessToken;
+                //})
+                //.then((accessToken) => {
+                //set to storage for later use
+                localStorage.setItem("accessToken", JSON.stringify(accessToken));
+                console.log('accessToken in storage: ', localStorage.getItem("accessToken"));
+                _this.user = new __WEBPACK_IMPORTED_MODULE_2__models_user__["a" /* User */]();
+                _this.user.email = accessToken.token.userName;
+                return accessToken;
+            }, function (err) {
+                console.log('access token error ', err);
+                return Promise.reject(JSON.stringify(err));
+            });
+        }
         // return this.http.post('/api/authenticate', { username: username, password: password })
         // .toPromise()
         // .then((user => {
@@ -1022,7 +1096,7 @@ var UserService = (function () {
     };
     UserService.prototype.logout = function () {
         // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem('accessToken');
         this.user = null;
     };
     UserService.prototype.createEvangelist = function (evangelist) {
@@ -1169,6 +1243,27 @@ var User = (function () {
 
 module.exports = __webpack_require__("./src/main.ts");
 
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 
