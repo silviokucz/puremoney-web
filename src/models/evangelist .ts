@@ -1,12 +1,13 @@
-import { GeoAddress } from './geoAddress';
-export class Evangelist {
-    status?:number; // = ['0', '1', '2']
-    id?: number;
+import {GeoAddress} from './geoAddress'
 
-    firstName: string;
-    lastName: string;
-    ethAddress?: string;
-    geoAddress?:GeoAddress;
+export class Evangelist {
+  status?: number // = ['0', '1', '2']
+  id?: number
+
+  firstName: string
+  lastName: string
+  ethAddress?: string
+  geoAddress?: GeoAddress
 
 }
 
