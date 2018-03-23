@@ -3,48 +3,79 @@
 <!-- <div class="col-md-6 col-md-offset-3"> -->
 <div class="registerEvangelist">
   <h2>Register Evangelist</h2>
-  <div class="form-group">
-    <label>First Name</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.firstName" placeholder="First Name">&nbsp;&nbsp;&nbsp;
-  </div>
+  <form name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
 
-  <div class="form-group">
-    <label for="lastName">Last Name</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.lastName" placeholder="Last Name">&nbsp;&nbsp;&nbsp;
-  </div>
-  <div class="form-group">
-    <label for="ethAddress">Ethereum Address</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.ethAddress" placeholder="Ethereum Address">&nbsp;&nbsp;&nbsp;
-  </div>
-  <div class="form-group">
-    <label for="street1">Street Address 1</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.geoAddress.street1" placeholder="Street Address 1">&nbsp;&nbsp;&nbsp;
-  </div>
-  <div class="form-group">
-    <label for="street2">Street Address 2</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.geoAddress.street2" placeholder="Street Address 2">&nbsp;&nbsp;&nbsp;
-  </div>
-  <div class="form-group">
-    <label for="city">City</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.geoAddress.city" placeholder="City">&nbsp;&nbsp;&nbsp;
-  </div>
-  <div class="form-group">
-    <label for="stateOrProvince">State or Province</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.geoAddress.stateOrProvince"
-           placeholder="State or Province">&nbsp;&nbsp;&nbsp;
-  </div>
-  <div class="form-group">
-    <label for="country">Country</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.geoAddress.country" placeholder="Country">&nbsp;&nbsp;&nbsp;
-  </div>
-  <div class="form-group">
-    <label for="zip">Zip</label>
-    <input class="form-control" type="text" [(ngModel)]="evangelist.geoAddress.zip" placeholder="Zip">&nbsp;&nbsp;&nbsp;
-  </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+      <label for="firstName">First Name</label>
+      <input class="form-control" type="text" name="firstName" [(ngModel)]="evangelist.firstName"
+             placeholder="First Name" #firstName="ngModel" id="firstName" required>
+      <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+      <label for="lastName">Last Name</label>
+      <input class="form-control" type="text" name="lastName" [(ngModel)]="evangelist.lastName"
+             placeholder="Last Name" #lastName="ngModel" id="lastName" required>
+      <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !ethAddress.valid }">
+      <label for="ethAddress">Ethereum Address</label>
+      <input class="form-control" type="text" name="ethAddress" [(ngModel)]="evangelist.ethAddress"
+             placeholder="Ethereum Address" #ethAddress="ngModel" id="ethAddress" required>
+      <div *ngIf="f.submitted && !ethAddress.valid" class="help-block">Ethereum Address is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !street1.valid }">
+      <label for="street1">Street Address 1</label>
+      <input class="form-control" type="text" name="street1" [(ngModel)]="evangelist.geoAddress.street1"
+             placeholder="Street Address 1" #street1="ngModel" id="street1" required>
+      <div *ngIf="f.submitted && !street1.valid" class="help-block">Street Address 1 is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !street2.valid }">
+      <label for="street2">Street Address 2</label>
+      <input class="form-control" type="text" name="street2" [(ngModel)]="evangelist.geoAddress.street2"
+             placeholder="Street Address 2" #street2="ngModel" id="street2">
+      <div *ngIf="f.submitted && !street2.valid" class="help-block">Street Address 2 is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !city.valid }">
+      <label for="city">City</label>
+      <input class="form-control" type="text" name="city" [(ngModel)]="evangelist.geoAddress.city"
+             placeholder="City" #city="ngModel" id="city" required>
+      <div *ngIf="f.submitted && !city.valid" class="help-block">City is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !stateOrProvince.valid }">
+      <label for="stateOrProvince">State or Province</label>
+      <input class="form-control" type="text" name="stateOrProvince" [(ngModel)]="evangelist.geoAddress.stateOrProvince"
+             placeholder="State or Province" #stateOrProvince="ngModel" id="stateOrProvince" required>
+      <div *ngIf="f.submitted && !stateOrProvince.valid" class="help-block">State or Province is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !zip.valid }">
+      <label for="zip">Zip</label>
+      <input class="form-control" type="text" name="zip" [(ngModel)]="evangelist.geoAddress.zip"
+             placeholder="Zip" #zip="ngModel" id="zip" required>
+      <div *ngIf="f.submitted && !zip.valid" class="help-block">Zip is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !country.valid }">
+      <label for="country">Country</label>
+      <input class="form-control" type="text" name="country" [(ngModel)]="evangelist.geoAddress.country"
+             placeholder="Country" #country="ngModel" id="country" required>
+      <div *ngIf="f.submitted && !country.valid" class="help-block">Country is required</div>
+    </div>
 
-  <div class="form-group">
-    <button [disabled]="loading" class="btn btn-primary" (click)="register()">Submit</button>
-    <img *ngIf="loading"
-         src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !localToken.valid }">
+      <label for="localToken">Local Token</label>
+      <select id="localToken" name="localToken" class="form-control custom-select"  [(ngModel)]="evangelist.contractAddress"
+              #localToken="ngModel" required>
+        <option value="">Choose...</option>
+        <option *ngFor="let localToken of localTokens" value="{{localToken.contractAddress}}">{{localToken.localityCode}}</option>
+      </select>
+      <div *ngIf="f.submitted && !localToken.valid" class="help-block">Must choose a local token</div>
+    </div>
 
-  </div>
+
+    <div class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">Register</button>
+      <img *ngIf="loading"
+           src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    </div>
+
+  </form>
+</div>

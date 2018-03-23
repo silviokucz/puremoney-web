@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router'
 import {Evangelist} from '../../../models/evangelist '
 import {GeoAddress} from '../../../models/geoAddress'
 import {GeoAddressGeoCode} from '../../../models/geoAddressGeoCode'
+import {forEach} from '@angular/router/src/utils/collection'
 
 @Component({
   selector: 'app-register-page',
@@ -14,6 +15,8 @@ export class RegisterEvngelistPageComponent implements OnInit {
 
   evangelist: Evangelist
   loading = false
+  localTokens = []
+
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -21,6 +24,14 @@ export class RegisterEvngelistPageComponent implements OnInit {
     this.evangelist = new Evangelist()
     this.evangelist.geoAddress = new GeoAddress()
     this.evangelist.geoAddress.geoCode = new GeoAddressGeoCode()
+
+    this.userService.getLocalTokens()
+      .then((res: any) => {
+        const list = JSON.parse(res._body)
+        list.forEach(item => {
+          this.localTokens.push(item)
+        })
+      })
   }
 
   ngOnInit() {
@@ -46,4 +57,5 @@ export class RegisterEvngelistPageComponent implements OnInit {
           this.loading = false
         })
   }
+
 }

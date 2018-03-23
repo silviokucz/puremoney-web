@@ -11,6 +11,7 @@ export class UserService {
   public user: User = null
 
   private httpOptions
+  private baseUrl = 'https://api.puremoney.tech/api/v1/'
 
   constructor(private http: Http) {
     const token = JSON.parse(localStorage.getItem('accessToken'))
@@ -103,18 +104,56 @@ export class UserService {
           res.resourceSets[0].resources[0].address.adminDistrict2 + ' ' +
           res.resourceSets[0].resources[0].address.countryRegion
 
-        return this.http.post('https://puremoney-api-api-slot1.azurewebsites.net/evangelist', evangelist, this.httpOptions)
+        return this.http.post(this.baseUrl + 'evangelist', evangelist, this.httpOptions)
           .toPromise()
-          .then()
+          .then((res) => {
+            // assign id to current user
+          })
 
       })
   }
 
-  createUser(user: User) {
+  public getEvangelistById(id: number) {
 
-    return this.http.post('https://puremoney-api-api-slot1.azurewebsites.net/Account/Register', user)
+    return this.http.get(this.baseUrl + `database/evangelist/id/${id}`, this.getHttpOptions())
       .toPromise()
       .then()
+
+  }
+
+  createUser(user: User) {
+
+    return this.http.post(this.baseUrl + 'Account/Register', user)
+      .toPromise()
+      .then()
+  }
+
+  public getUserInfo() {
+    return this.http.get(this.baseUrl + 'account/userinfo', this.getHttpOptions())
+      .toPromise()
+      .then()
+  }
+
+  public getLocalTokens() {
+    return this.http.get(this.baseUrl + 'contracts/localtoken/list', this.getHttpOptions())
+      .toPromise()
+      .then()
+  }
+
+  private getHttpOptions() {
+    const token = JSON.parse(localStorage.getItem('accessToken'))
+    if (token) {
+      const httpOptions = {
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token.token.access_token
+        })
+      }
+
+      return httpOptions
+    }
+
+    return null
   }
 
   private getGeoCode(address: string) {

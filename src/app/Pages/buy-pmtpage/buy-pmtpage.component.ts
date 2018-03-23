@@ -22,7 +22,9 @@ export class BuyPmtpageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate(['/register-evangelist'])
+    if (!this.userService.user.evangelistId || this.userService.user.evangelistId === 0) {
+      this.router.navigate(['/register-evangelist'])
+    }
   }
 
 }

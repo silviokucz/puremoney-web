@@ -142,7 +142,9 @@ var BuyPmtpageComponent = (function () {
         this.evangelist.geoAddress.geoCode = new __WEBPACK_IMPORTED_MODULE_3__models_geoAddressGeoCode__["a" /* GeoAddressGeoCode */]();
     }
     BuyPmtpageComponent.prototype.ngOnInit = function () {
-        this.router.navigate(['/register-evangelist']);
+        if (!this.userService.user.evangelistId || this.userService.user.evangelistId === 0) {
+            this.router.navigate(['/register-evangelist']);
+        }
     };
     return BuyPmtpageComponent;
 }());
@@ -320,7 +322,7 @@ module.exports = ".loginForm {\r\n  width: 60%;\r\n  margin-left: 20%;\r\n}\r\n"
 /***/ "./src/app/Pages/login-page/login-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p></p>\n<!-- <div class=\"col-md-6 col-md-offset-3 loginForm\"> -->\n<div class=\"loginForm\">\n  <h2>Login</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid }\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"model.username\" #username=\"ngModel\"\n             required/>\n      <div *ngIf=\"f.submitted && !username.valid\" class=\"help-block\">Username is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\"\n             required/>\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n    </div>\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\n      <img *ngIf=\"loading\"\n           src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n      <a [routerLink]=\"['/register-user']\" class=\"btn btn-link\">Register</a>\n    </div>\n  </form>\n</div>\n<br>\n<app-footer></app-footer>\n"
+module.exports = "<p></p>\n<!-- <div class=\"col-md-6 col-md-offset-3 loginForm\"> -->\n<div class=\"loginForm\">\n  <h2>Login</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid }\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"modelLogin.username\" #username=\"ngModel\"\n             required/>\n      <div *ngIf=\"f.submitted && !username.valid\" class=\"help-block\">Username is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"modelLogin.password\" #password=\"ngModel\"\n             required/>\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n    </div>\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\n      <img *ngIf=\"loading\"\n           src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n      <a [routerLink]=\"['/register-user']\" class=\"btn btn-link\">Register</a>\n    </div>\n  </form>\n</div>\n<br>\n<app-footer></app-footer>\n"
 
 /***/ }),
 
@@ -349,7 +351,7 @@ var LoginPageComponent = (function () {
         this.route = route;
         this.router = router;
         this.userService = userService;
-        this.model = {};
+        this.modelLogin = {};
         this.loading = false;
     }
     LoginPageComponent.prototype.ngOnInit = function () {
@@ -357,17 +359,43 @@ var LoginPageComponent = (function () {
         this.userService.logout();
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        // todo remove this
+        this.modelLogin = { username: 'silvio1@host.com', password: 'Aa1234567*' };
     };
     LoginPageComponent.prototype.login = function () {
         var _this = this;
         this.loading = true;
-        this.userService.login(this.model.username, this.model.password)
+        this.userService.login(this.modelLogin.username, this.modelLogin.password)
             .then(function (data) {
-            _this.router.navigate([_this.returnUrl]);
+            _this.userService.getUserInfo()
+                .then(function (info) {
+                console.log(JSON.stringify(info));
+                // get evengelist data
+                var userInfo = JSON.parse(info._body);
+                _this.userService.user.evangelistId = userInfo.EvangelistId;
+                if (_this.userService.user.evangelistId !== 0) {
+                    _this.userService.getEvangelistById(_this.userService.user.evangelistId)
+                        .then(function (evangelist) {
+                        console.log(JSON.stringify(evangelist));
+                        _this.router.navigate([_this.returnUrl]);
+                    })
+                        .catch(function (error) {
+                        alert(JSON.stringify(error));
+                        _this.loading = false;
+                        _this.modelLogin = {};
+                    });
+                }
+                _this.router.navigate([_this.returnUrl]);
+            })
+                .catch(function (error) {
+                alert(JSON.stringify(error));
+                _this.loading = false;
+                _this.modelLogin = {};
+            });
         }, function (error) {
-            alert(error);
+            alert(JSON.stringify(error));
             _this.loading = false;
-            _this.model = {};
+            _this.modelLogin = {};
         });
     };
     return LoginPageComponent;
@@ -439,14 +467,14 @@ MissionPageComponent = __decorate([
 /***/ "./src/app/Pages/register-evangelist-page/register-evangelist-page.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".registerEvangelist {\r\n  width: 60%;\r\n  margin-left: 20%;\r\n}\r\n"
+module.exports = ".registerEvangelist {\r\n  width: 60%;\r\n  margin-left: 20%;\r\n}\r\n\r\n.label1{\r\n  font-weight: 700;\r\n}\r\n"
 
 /***/ }),
 
 /***/ "./src/app/Pages/register-evangelist-page/register-evangelist-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n</p>\n<!-- <div class=\"col-md-6 col-md-offset-3\"> -->\n<div class=\"registerEvangelist\">\n  <h2>Register Evangelist</h2>\n  <div class=\"form-group\">\n    <label>First Name</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.firstName\" placeholder=\"First Name\">&nbsp;&nbsp;&nbsp;\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"lastName\">Last Name</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.lastName\" placeholder=\"Last Name\">&nbsp;&nbsp;&nbsp;\n  </div>\n  <div class=\"form-group\">\n    <label for=\"ethAddress\">Ethereum Address</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.ethAddress\" placeholder=\"Ethereum Address\">&nbsp;&nbsp;&nbsp;\n  </div>\n  <div class=\"form-group\">\n    <label for=\"street1\">Street Address 1</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.geoAddress.street1\" placeholder=\"Street Address 1\">&nbsp;&nbsp;&nbsp;\n  </div>\n  <div class=\"form-group\">\n    <label for=\"street2\">Street Address 2</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.geoAddress.street2\" placeholder=\"Street Address 2\">&nbsp;&nbsp;&nbsp;\n  </div>\n  <div class=\"form-group\">\n    <label for=\"city\">City</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.geoAddress.city\" placeholder=\"City\">&nbsp;&nbsp;&nbsp;\n  </div>\n  <div class=\"form-group\">\n    <label for=\"stateOrProvince\">State or Province</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.geoAddress.stateOrProvince\"\n           placeholder=\"State or Province\">&nbsp;&nbsp;&nbsp;\n  </div>\n  <div class=\"form-group\">\n    <label for=\"country\">Country</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.geoAddress.country\" placeholder=\"Country\">&nbsp;&nbsp;&nbsp;\n  </div>\n  <div class=\"form-group\">\n    <label for=\"zip\">Zip</label>\n    <input class=\"form-control\" type=\"text\" [(ngModel)]=\"evangelist.geoAddress.zip\" placeholder=\"Zip\">&nbsp;&nbsp;&nbsp;\n  </div>\n\n  <div class=\"form-group\">\n    <button [disabled]=\"loading\" class=\"btn btn-primary\" (click)=\"register()\">Submit</button>\n    <img *ngIf=\"loading\"\n         src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n\n  </div>\n"
+module.exports = "<p>\n</p>\n<!-- <div class=\"col-md-6 col-md-offset-3\"> -->\n<div class=\"registerEvangelist\">\n  <h2>Register Evangelist</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && register()\" #f=\"ngForm\" novalidate>\n\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !firstName.valid }\">\n      <label for=\"firstName\">First Name</label>\n      <input class=\"form-control\" type=\"text\" name=\"firstName\" [(ngModel)]=\"evangelist.firstName\"\n             placeholder=\"First Name\" #firstName=\"ngModel\" id=\"firstName\" required>\n      <div *ngIf=\"f.submitted && !firstName.valid\" class=\"help-block\">First Name is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !lastName.valid }\">\n      <label for=\"lastName\">Last Name</label>\n      <input class=\"form-control\" type=\"text\" name=\"lastName\" [(ngModel)]=\"evangelist.lastName\"\n             placeholder=\"Last Name\" #lastName=\"ngModel\" id=\"lastName\" required>\n      <div *ngIf=\"f.submitted && !lastName.valid\" class=\"help-block\">Last Name is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !ethAddress.valid }\">\n      <label for=\"ethAddress\">Ethereum Address</label>\n      <input class=\"form-control\" type=\"text\" name=\"ethAddress\" [(ngModel)]=\"evangelist.ethAddress\"\n             placeholder=\"Ethereum Address\" #ethAddress=\"ngModel\" id=\"ethAddress\" required>\n      <div *ngIf=\"f.submitted && !ethAddress.valid\" class=\"help-block\">Ethereum Address is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !street1.valid }\">\n      <label for=\"street1\">Street Address 1</label>\n      <input class=\"form-control\" type=\"text\" name=\"street1\" [(ngModel)]=\"evangelist.geoAddress.street1\"\n             placeholder=\"Street Address 1\" #street1=\"ngModel\" id=\"street1\" required>\n      <div *ngIf=\"f.submitted && !street1.valid\" class=\"help-block\">Street Address 1 is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !street2.valid }\">\n      <label for=\"street2\">Street Address 2</label>\n      <input class=\"form-control\" type=\"text\" name=\"street2\" [(ngModel)]=\"evangelist.geoAddress.street2\"\n             placeholder=\"Street Address 2\" #street2=\"ngModel\" id=\"street2\">\n      <div *ngIf=\"f.submitted && !street2.valid\" class=\"help-block\">Street Address 2 is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !city.valid }\">\n      <label for=\"city\">City</label>\n      <input class=\"form-control\" type=\"text\" name=\"city\" [(ngModel)]=\"evangelist.geoAddress.city\"\n             placeholder=\"City\" #city=\"ngModel\" id=\"city\" required>\n      <div *ngIf=\"f.submitted && !city.valid\" class=\"help-block\">City is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !stateOrProvince.valid }\">\n      <label for=\"stateOrProvince\">State or Province</label>\n      <input class=\"form-control\" type=\"text\" name=\"stateOrProvince\" [(ngModel)]=\"evangelist.geoAddress.stateOrProvince\"\n             placeholder=\"State or Province\" #stateOrProvince=\"ngModel\" id=\"stateOrProvince\" required>\n      <div *ngIf=\"f.submitted && !stateOrProvince.valid\" class=\"help-block\">State or Province is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !zip.valid }\">\n      <label for=\"zip\">Zip</label>\n      <input class=\"form-control\" type=\"text\" name=\"zip\" [(ngModel)]=\"evangelist.geoAddress.zip\"\n             placeholder=\"Zip\" #zip=\"ngModel\" id=\"zip\" required>\n      <div *ngIf=\"f.submitted && !zip.valid\" class=\"help-block\">Zip is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !country.valid }\">\n      <label for=\"country\">Country</label>\n      <input class=\"form-control\" type=\"text\" name=\"country\" [(ngModel)]=\"evangelist.geoAddress.country\"\n             placeholder=\"Country\" #country=\"ngModel\" id=\"country\" required>\n      <div *ngIf=\"f.submitted && !country.valid\" class=\"help-block\">Country is required</div>\n    </div>\n\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !localToken.valid }\">\n      <label for=\"localToken\">Local Token</label>\n      <select id=\"localToken\" name=\"localToken\" class=\"form-control custom-select\"  [(ngModel)]=\"evangelist.contractAddress\"\n              #localToken=\"ngModel\" required>\n        <option value=\"\">Choose...</option>\n        <option *ngFor=\"let localToken of localTokens\" value=\"{{localToken.contractAddress}}\">{{localToken.localityCode}}</option>\n      </select>\n      <div *ngIf=\"f.submitted && !localToken.valid\" class=\"help-block\">Must choose a local token</div>\n    </div>\n\n\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>\n      <img *ngIf=\"loading\"\n           src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n    </div>\n\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -478,13 +506,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var RegisterEvngelistPageComponent = (function () {
     function RegisterEvngelistPageComponent(route, router, userService) {
+        var _this = this;
         this.route = route;
         this.router = router;
         this.userService = userService;
         this.loading = false;
+        this.localTokens = [];
         this.evangelist = new __WEBPACK_IMPORTED_MODULE_3__models_evangelist___["a" /* Evangelist */]();
         this.evangelist.geoAddress = new __WEBPACK_IMPORTED_MODULE_4__models_geoAddress__["a" /* GeoAddress */]();
         this.evangelist.geoAddress.geoCode = new __WEBPACK_IMPORTED_MODULE_5__models_geoAddressGeoCode__["a" /* GeoAddressGeoCode */]();
+        this.userService.getLocalTokens()
+            .then(function (res) {
+            var list = JSON.parse(res._body);
+            list.forEach(function (item) {
+                _this.localTokens.push(item);
+            });
+        });
     }
     RegisterEvngelistPageComponent.prototype.ngOnInit = function () {
     };
@@ -531,7 +568,7 @@ module.exports = ".registerUser{\r\n    width: 60%;\r\n    margin-left: 20%;\r\n
 /***/ "./src/app/Pages/register-user-page/register-user-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n</p>\n<!-- <div class=\"col-md-6 col-md-offset-3\"> -->\n<div class=\"registerUser\">\n  <h2>Register User</h2>\n  <div class=\"form-group\">\n    <label for=\"email\">Email</label>\n    <input type=\"text \" class=\"form-control\" name=\"email\" [(ngModel)]=\"model.email\"/>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input type=\"password\" class=\"form-control \" name=\"password\" [(ngModel)]=\"model.password \"/>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"confirmPassword\">Confirm Password</label>\n    <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" [(ngModel)]=\"model.confirmPassword\"/>\n  </div>\n  <div class=\"form-group\">\n    <button [disabled]=\"loading\" class=\"btn btn-primary\" (click)=\"register()\">Register</button>\n    <img *ngIf=\"loading \"\n         src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"\n    />\n    <a [routerLink]=\"['/login']\" class=\"btn btn-link\">Cancel</a>\n  </div>\n</div>\n"
+module.exports = "<p>\n</p>\n<!-- <div class=\"col-md-6 col-md-offset-3\"> -->\n<div class=\"registerUser\">\n  <h2>Register User</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && register()\" #f=\"ngForm\" novalidate>\n  <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n    <label for=\"email\">Email</label>\n    <input type=\"text \" class=\"form-control\" name=\"email\" [(ngModel)]=\"model.email\"\n           placeholder=\"Email\" #email=\"ngModel\" id=\"email\"  required/>\n    <div *ngIf=\"f.submitted && !email.valid\" class=\"help-block\">Email is required</div>\n  </div>\n  <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n    <label for=\"password\">Password</label>\n    <input type=\"password\" class=\"form-control \" name=\"password\" [(ngModel)]=\"model.password \"\n           placeholder=\"Password\" #password=\"ngModel\" id=\"password\"  required/>\n    <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n  </div>\n  <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !confirmPassword.valid }\">\n    <label for=\"confirmPassword\">Confirm Password</label>\n    <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" [(ngModel)]=\"model.confirmPassword\"\n           placeholder=\"Confirm Password\" #confirmPassword=\"ngModel\" id=\"confirmPassword\"  required/>\n    <div *ngIf=\"f.submitted && !confirmPassword.valid\" class=\"help-block\">Confirm Password is required</div>\n  </div>\n  <div class=\"form-group\">\n    <button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>\n    <img *ngIf=\"loading\"\n         src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n    <a [routerLink]=\"['/login']\" class=\"btn btn-link\">Cancel</a>\n  </div>\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -1027,6 +1064,7 @@ var UserService = (function () {
     function UserService(http) {
         this.http = http;
         this.user = null;
+        this.baseUrl = 'https://api.puremoney.tech/api/v1/';
         // Set the configuration settings
         this.credentials = {
             client: {
@@ -1096,15 +1134,45 @@ var UserService = (function () {
                 res.resourceSets[0].resources[0].address.adminDistrict + ' ' +
                 res.resourceSets[0].resources[0].address.adminDistrict2 + ' ' +
                 res.resourceSets[0].resources[0].address.countryRegion;
-            return _this.http.post('https://puremoney-api-api-slot1.azurewebsites.net/evangelist', evangelist, _this.httpOptions)
+            return _this.http.post(_this.baseUrl + 'evangelist', evangelist, _this.httpOptions)
                 .toPromise()
-                .then();
+                .then(function (res) {
+                // assign id to current user
+            });
         });
     };
-    UserService.prototype.createUser = function (user) {
-        return this.http.post('https://puremoney-api-api-slot1.azurewebsites.net/Account/Register', user)
+    UserService.prototype.getEvangelistById = function (id) {
+        return this.http.get(this.baseUrl + ("database/evangelist/id/" + id), this.getHttpOptions())
             .toPromise()
             .then();
+    };
+    UserService.prototype.createUser = function (user) {
+        return this.http.post(this.baseUrl + 'Account/Register', user)
+            .toPromise()
+            .then();
+    };
+    UserService.prototype.getUserInfo = function () {
+        return this.http.get(this.baseUrl + 'account/userinfo', this.getHttpOptions())
+            .toPromise()
+            .then();
+    };
+    UserService.prototype.getLocalTokens = function () {
+        return this.http.get(this.baseUrl + 'contracts/localtoken/list', this.getHttpOptions())
+            .toPromise()
+            .then();
+    };
+    UserService.prototype.getHttpOptions = function () {
+        var token = JSON.parse(localStorage.getItem('accessToken'));
+        if (token) {
+            var httpOptions = {
+                headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token.token.access_token
+                })
+            };
+            return httpOptions;
+        }
+        return null;
     };
     UserService.prototype.getGeoCode = function (address) {
         var url = "http://dev.virtualearth.net/REST/v1/Locations?addressLine=" + address + "     &$format=responseFormat&key=Al4qJqLS1IDCpE1RjEDvwjK2FzLnffLx2kp3fWEgO_9dExPJgTjaZRNMSC0KF1AH";

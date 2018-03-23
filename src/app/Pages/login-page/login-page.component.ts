@@ -9,7 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router'
 })
 export class LoginPageComponent implements OnInit {
 
-  model: any = {}
+  modelLogin: any = {}
   loading = false
   returnUrl: string
 
@@ -24,19 +24,51 @@ export class LoginPageComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
+
+    // todo remove this
+    this.modelLogin = {username: 'silvio1@host.com', password: 'Aa1234567*'}
   }
 
   login() {
     this.loading = true
-    this.userService.login(this.model.username, this.model.password)
+    this.userService.login(this.modelLogin.username, this.modelLogin.password)
       .then(
         data => {
-          this.router.navigate([this.returnUrl])
+
+          this.userService.getUserInfo()
+            .then((info: any) => {
+              console.log(JSON.stringify(info))
+
+              // get evengelist data
+              const userInfo = JSON.parse(info._body)
+              this.userService.user.evangelistId = userInfo.EvangelistId
+
+              if (this.userService.user.evangelistId !== 0) {
+                this.userService.getEvangelistById(this.userService.user.evangelistId)
+                  .then((evangelist) => {
+                    console.log(JSON.stringify(evangelist))
+                    this.router.navigate([this.returnUrl])
+                  })
+                  .catch(error => {
+                    alert(JSON.stringify(error))
+                    this.loading = false
+                    this.modelLogin = {}
+                  })
+              }
+
+              this.router.navigate([this.returnUrl])
+
+            })
+            .catch(error => {
+              alert(JSON.stringify(error))
+              this.loading = false
+              this.modelLogin = {}
+            })
         },
         error => {
-          alert(error)
+          alert(JSON.stringify(error))
           this.loading = false
-          this.model = {}
+          this.modelLogin = {}
         })
   }
 
