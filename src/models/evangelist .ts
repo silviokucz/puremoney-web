@@ -8,7 +8,7 @@ export class Evangelist {
   lastName: string
   ethAddress?: string
   geoAddress?: GeoAddress
-  contractAddress: string
+  // contractAddress?: string
 
 }
 

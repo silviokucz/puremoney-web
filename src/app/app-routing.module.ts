@@ -10,6 +10,7 @@ import {NgModule} from '@angular/core'
 import {RouterModule, Routes} from '@angular/router'
 import {RegisterEvngelistPageComponent} from './Pages/register-evangelist-page/register-evangelist-page.component'
 import {RegisterUserPageComponent} from './Pages/register-user-page/register-user-page.component'
+import {ForgotPasswordComponent} from './Pages/forgot-password/forgot-password.component'
 
 
 const routes: Routes = [
@@ -33,6 +34,9 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginPageComponent
+  },
+  {
+    path: 'forgot-password', component: ForgotPasswordComponent
   },
   {
     path: 'register-user', component: RegisterUserPageComponent

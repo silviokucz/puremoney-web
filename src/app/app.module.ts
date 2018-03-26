@@ -16,7 +16,8 @@ import {BuyPmtpageComponent} from './Pages/buy-pmtpage/buy-pmtpage.component'
 import {FooterComponent} from './UI/footer/footer.component'
 import {LoginPageComponent} from './Pages/login-page/login-page.component'
 import {RegisterEvngelistPageComponent} from './Pages/register-evangelist-page/register-evangelist-page.component'
-import {RegisterUserPageComponent} from './Pages/register-user-page/register-user-page.component'
+import {RegisterUserPageComponent} from './Pages/register-user-page/register-user-page.component';
+import { ForgotPasswordComponent } from './Pages/forgot-password/forgot-password.component'
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {RegisterUserPageComponent} from './Pages/register-user-page/register-use
     FooterComponent,
     LoginPageComponent,
     RegisterEvngelistPageComponent,
-    RegisterUserPageComponent
+    RegisterUserPageComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

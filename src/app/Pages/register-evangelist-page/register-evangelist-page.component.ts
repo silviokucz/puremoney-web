@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router'
 import {Evangelist} from '../../../models/evangelist '
 import {GeoAddress} from '../../../models/geoAddress'
 import {GeoAddressGeoCode} from '../../../models/geoAddressGeoCode'
-import {forEach} from '@angular/router/src/utils/collection'
 
 @Component({
   selector: 'app-register-page',
@@ -53,7 +52,7 @@ export class RegisterEvngelistPageComponent implements OnInit {
           this.router.navigate(['/'])
         },
         error => {
-          alert((error._body || error) + error)
+          alert((error.statusText || error) + error)
           this.loading = false
         })
   }

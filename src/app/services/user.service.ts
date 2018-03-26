@@ -104,7 +104,7 @@ export class UserService {
           res.resourceSets[0].resources[0].address.adminDistrict2 + ' ' +
           res.resourceSets[0].resources[0].address.countryRegion
 
-        return this.http.post(this.baseUrl + 'evangelist', evangelist, this.httpOptions)
+        return this.http.post(this.baseUrl + 'database/evangelist', evangelist, this.httpOptions)
           .toPromise()
           .then((res) => {
             // assign id to current user

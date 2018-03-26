@@ -1,14 +1,28 @@
+
+
+
 <div class="allPages">
 
   <div *ngIf="getUser() === null" class="login">
     <a href="/login/">
-      <button class="btn btn-primary">Login</button>
+      <button type="button" class="btn btn-primary">Login</button>
     </a>
     <br>
     <a href="/register-user/">Register</a>
   </div>
   <div *ngIf="getUser() !== null" class="login">
-    <button (click)="logout()" class="btn btn-primary">Logout ({{getUser().email}})</button>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton" >
+        {{getUser().email}}
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">&nbsp;Change Password</a>
+        <a class="dropdown-item" href="/register-evangelist">&nbsp;Register Evangelist</a>
+        <div class="dropdown-divider"><hr></div>
+        <a class="dropdown-item" (click)="logout()">&nbsp;Logout</a>
+      </div>
+    </div>
   </div>
 
   <div class="logo">
@@ -18,4 +32,5 @@
   <app-nav-bar></app-nav-bar>
   <br>
   <router-outlet></router-outlet>
+
 </div>
