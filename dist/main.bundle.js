@@ -162,6 +162,76 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "./src/app/Pages/change-password/change-password.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ".changePassword{\r\n  width: 60%;\r\n  margin-left: 20%;\r\n}\r\n"
+
+/***/ }),
+
+/***/ "./src/app/Pages/change-password/change-password.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n</p>\n<!-- <div class=\"col-md-6 col-md-offset-3\"> -->\n<div class=\"changePassword\">\n  <h2>Change Password</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && changePassword()\" #f=\"ngForm\" novalidate>\n\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"oldPassword\">Password</label>\n      <input type=\"password\" class=\"form-control \" name=\"oldPassword\" [(ngModel)]=\"model.OldPassword \"\n             placeholder=\"Old Password\" #oldPassword=\"ngModel\" id=\"oldPassword\"  required/>\n      <div *ngIf=\"f.submitted && !oldPassword.valid\" class=\"help-block\">Old Password is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control \" name=\"password\" [(ngModel)]=\"model.NewPassword \"\n             placeholder=\"New Password\" #password=\"ngModel\" id=\"password\"  required/>\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !confirmPassword.valid }\">\n      <label for=\"confirmPassword\">Confirm Password</label>\n      <input type=\"password\" class=\"form-control\" name=\"confirmPassword\" [(ngModel)]=\"model.confirmPassword\"\n             placeholder=\"Confirm Password\" #confirmPassword=\"ngModel\" id=\"confirmPassword\"  required/>\n      <div *ngIf=\"f.submitted && !confirmPassword.valid\" class=\"help-block\">Confirm Password is required</div>\n    </div>\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">Submit</button>\n      <img *ngIf=\"loading\"\n           src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n      <a [routerLink]=\"['/login']\" class=\"btn btn-link\">Cancel</a>\n    </div>\n  </form>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/Pages/change-password/change-password.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangePasswordComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_user_service__ = __webpack_require__("./src/app/services/user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ChangePasswordComponent = (function () {
+    function ChangePasswordComponent(router, userService) {
+        this.router = router;
+        this.userService = userService;
+        this.model = { OldPassword: '', NewPassword: '', ConfirmPassword: '' };
+        this.loading = false;
+    }
+    ChangePasswordComponent.prototype.ngOnInit = function () {
+    };
+    ChangePasswordComponent.prototype.changePassword = function () {
+        var _this = this;
+        this.loading = true;
+        this.userService.changePassword(this.model)
+            .then(function (data) {
+            _this.router.navigate(['/login']);
+        }, function (error) {
+            alert(error._body);
+            _this.loading = false;
+        });
+    };
+    return ChangePasswordComponent;
+}());
+ChangePasswordComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-change-password',
+        template: __webpack_require__("./src/app/Pages/change-password/change-password.component.html"),
+        styles: [__webpack_require__("./src/app/Pages/change-password/change-password.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === "function" && _b || Object])
+], ChangePasswordComponent);
+
+var _a, _b;
+//# sourceMappingURL=change-password.component.js.map
+
+/***/ }),
+
 /***/ "./src/app/Pages/contact-page/contact-page.component.css":
 /***/ (function(module, exports) {
 
@@ -209,6 +279,56 @@ ContactPageComponent = __decorate([
 ], ContactPageComponent);
 
 //# sourceMappingURL=contact-page.component.js.map
+
+/***/ }),
+
+/***/ "./src/app/Pages/evangelist-home-page/evangelist-home-page.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/Pages/evangelist-home-page/evangelist-home-page.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  evangelist-home-page works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/Pages/evangelist-home-page/evangelist-home-page.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EvangelistHomePageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var EvangelistHomePageComponent = (function () {
+    function EvangelistHomePageComponent() {
+    }
+    EvangelistHomePageComponent.prototype.ngOnInit = function () {
+    };
+    return EvangelistHomePageComponent;
+}());
+EvangelistHomePageComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["o" /* Component */])({
+        selector: 'app-evangelist-home-page',
+        template: __webpack_require__("./src/app/Pages/evangelist-home-page/evangelist-home-page.component.html"),
+        styles: [__webpack_require__("./src/app/Pages/evangelist-home-page/evangelist-home-page.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], EvangelistHomePageComponent);
+
+//# sourceMappingURL=evangelist-home-page.component.js.map
 
 /***/ }),
 
@@ -427,7 +547,9 @@ var LoginPageComponent = (function () {
                     _this.userService.getEvangelistById(_this.userService.user.evangelistId)
                         .then(function (evangelist) {
                         console.log(JSON.stringify(evangelist));
-                        _this.router.navigate([_this.returnUrl]);
+                        if (_this.userService.evangelist) {
+                            _this.router.navigate(['/evangelist-home-page']);
+                        }
                     })
                         .catch(function (error) {
                         alert(JSON.stringify(error));
@@ -524,7 +646,7 @@ module.exports = ".registerEvangelist {\r\n  width: 60%;\r\n  margin-left: 20%;\
 /***/ "./src/app/Pages/register-evangelist-page/register-evangelist-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n</p>\n<!-- <div class=\"col-md-6 col-md-offset-3\"> -->\n<div class=\"registerEvangelist\">\n  <h2>Register Evangelist</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && register()\" #f=\"ngForm\" novalidate>\n\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !firstName.valid }\">\n      <label for=\"firstName\">First Name</label>\n      <input class=\"form-control\" type=\"text\" name=\"firstName\" [(ngModel)]=\"evangelist.firstName\"\n             placeholder=\"First Name\" #firstName=\"ngModel\" id=\"firstName\" required>\n      <div *ngIf=\"f.submitted && !firstName.valid\" class=\"help-block\">First Name is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !lastName.valid }\">\n      <label for=\"lastName\">Last Name</label>\n      <input class=\"form-control\" type=\"text\" name=\"lastName\" [(ngModel)]=\"evangelist.lastName\"\n             placeholder=\"Last Name\" #lastName=\"ngModel\" id=\"lastName\" required>\n      <div *ngIf=\"f.submitted && !lastName.valid\" class=\"help-block\">Last Name is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !ethAddress.valid }\">\n      <label for=\"ethAddress\">Ethereum Address</label>\n      <input class=\"form-control\" type=\"text\" name=\"ethAddress\" [(ngModel)]=\"evangelist.ethAddress\"\n             placeholder=\"Ethereum Address\" #ethAddress=\"ngModel\" id=\"ethAddress\" required>\n      <div *ngIf=\"f.submitted && !ethAddress.valid\" class=\"help-block\">Ethereum Address is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !street1.valid }\">\n      <label for=\"street1\">Street Address 1</label>\n      <input class=\"form-control\" type=\"text\" name=\"street1\" [(ngModel)]=\"evangelist.geoAddress.street1\"\n             placeholder=\"Street Address 1\" #street1=\"ngModel\" id=\"street1\" required>\n      <div *ngIf=\"f.submitted && !street1.valid\" class=\"help-block\">Street Address 1 is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !street2.valid }\">\n      <label for=\"street2\">Street Address 2</label>\n      <input class=\"form-control\" type=\"text\" name=\"street2\" [(ngModel)]=\"evangelist.geoAddress.street2\"\n             placeholder=\"Street Address 2\" #street2=\"ngModel\" id=\"street2\">\n      <div *ngIf=\"f.submitted && !street2.valid\" class=\"help-block\">Street Address 2 is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !city.valid }\">\n      <label for=\"city\">City</label>\n      <input class=\"form-control\" type=\"text\" name=\"city\" [(ngModel)]=\"evangelist.geoAddress.city\"\n             placeholder=\"City\" #city=\"ngModel\" id=\"city\" required>\n      <div *ngIf=\"f.submitted && !city.valid\" class=\"help-block\">City is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !stateOrProvince.valid }\">\n      <label for=\"stateOrProvince\">State or Province</label>\n      <input class=\"form-control\" type=\"text\" name=\"stateOrProvince\" [(ngModel)]=\"evangelist.geoAddress.stateOrProvince\"\n             placeholder=\"State or Province\" #stateOrProvince=\"ngModel\" id=\"stateOrProvince\" required>\n      <div *ngIf=\"f.submitted && !stateOrProvince.valid\" class=\"help-block\">State or Province is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !zip.valid }\">\n      <label for=\"zip\">Zip</label>\n      <input class=\"form-control\" type=\"text\" name=\"zip\" [(ngModel)]=\"evangelist.geoAddress.zip\"\n             placeholder=\"Zip\" #zip=\"ngModel\" id=\"zip\" required>\n      <div *ngIf=\"f.submitted && !zip.valid\" class=\"help-block\">Zip is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !country.valid }\">\n      <label for=\"country\">Country</label>\n      <input class=\"form-control\" type=\"text\" name=\"country\" [(ngModel)]=\"evangelist.geoAddress.country\"\n             placeholder=\"Country\" #country=\"ngModel\" id=\"country\" required>\n      <div *ngIf=\"f.submitted && !country.valid\" class=\"help-block\">Country is required</div>\n    </div>\n\n    <!--<div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !localToken.valid }\">-->\n      <!--<label for=\"localToken\">Local Token</label>-->\n      <!--<select id=\"localToken\" name=\"localToken\" class=\"form-control custom-select\"  [(ngModel)]=\"evangelist.contractAddress\"-->\n              <!--#localToken=\"ngModel\" required>-->\n        <!--<option value=\"\">Choose...</option>-->\n        <!--<option *ngFor=\"let localToken of localTokens\" value=\"{{localToken.contractAddress}}\">{{localToken.localityCode}}</option>-->\n      <!--</select>-->\n      <!--<div *ngIf=\"f.submitted && !localToken.valid\" class=\"help-block\">Must choose a local token</div>-->\n    <!--</div>-->\n\n\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>\n      <img *ngIf=\"loading\"\n           src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n    </div>\n\n  </form>\n</div>\n"
+module.exports = "<p>\n</p>\n<!-- <div class=\"col-md-6 col-md-offset-3\"> -->\n<div class=\"registerEvangelist\">\n  <h2>Register Evangelist</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && register()\" #f=\"ngForm\" novalidate>\n\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !firstName.valid }\">\n      <label for=\"firstName\">First Name</label>\n      <input class=\"form-control\" type=\"text\" name=\"firstName\" [(ngModel)]=\"evangelist.firstName\"\n             placeholder=\"First Name\" #firstName=\"ngModel\" id=\"firstName\" required>\n      <div *ngIf=\"f.submitted && !firstName.valid\" class=\"help-block\">First Name is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !lastName.valid }\">\n      <label for=\"lastName\">Last Name</label>\n      <input class=\"form-control\" type=\"text\" name=\"lastName\" [(ngModel)]=\"evangelist.lastName\"\n             placeholder=\"Last Name\" #lastName=\"ngModel\" id=\"lastName\" required>\n      <div *ngIf=\"f.submitted && !lastName.valid\" class=\"help-block\">Last Name is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !ethAddress.valid }\">\n      <label for=\"ethAddress\">Ethereum Address</label>\n      <input class=\"form-control\" type=\"text\" name=\"ethAddress\" [(ngModel)]=\"evangelist.ethAddress\"\n             placeholder=\"Ethereum Address\" #ethAddress=\"ngModel\" id=\"ethAddress\" required>\n      <div *ngIf=\"f.submitted && !ethAddress.valid\" class=\"help-block\">Ethereum Address is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !street1.valid }\">\n      <label for=\"street1\">Street Address 1</label>\n      <input class=\"form-control\" type=\"text\" name=\"street1\" [(ngModel)]=\"evangelist.geoAddress.street1\"\n             placeholder=\"Street Address 1\" #street1=\"ngModel\" id=\"street1\" required>\n      <div *ngIf=\"f.submitted && !street1.valid\" class=\"help-block\">Street Address 1 is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !street2.valid }\">\n      <label for=\"street2\">Street Address 2</label>\n      <input class=\"form-control\" type=\"text\" name=\"street2\" [(ngModel)]=\"evangelist.geoAddress.street2\"\n             placeholder=\"Street Address 2\" #street2=\"ngModel\" id=\"street2\">\n      <div *ngIf=\"f.submitted && !street2.valid\" class=\"help-block\">Street Address 2 is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !city.valid }\">\n      <label for=\"city\">City</label>\n      <input class=\"form-control\" type=\"text\" name=\"city\" [(ngModel)]=\"evangelist.geoAddress.city\"\n             placeholder=\"City\" #city=\"ngModel\" id=\"city\" required>\n      <div *ngIf=\"f.submitted && !city.valid\" class=\"help-block\">City is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !stateOrProvince.valid }\">\n      <label for=\"stateOrProvince\">State or Province</label>\n      <input class=\"form-control\" type=\"text\" name=\"stateOrProvince\" [(ngModel)]=\"evangelist.geoAddress.stateOrProvince\"\n             placeholder=\"State or Province\" #stateOrProvince=\"ngModel\" id=\"stateOrProvince\" required>\n      <div *ngIf=\"f.submitted && !stateOrProvince.valid\" class=\"help-block\">State or Province is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !zip.valid }\">\n      <label for=\"zip\">Zip</label>\n      <input class=\"form-control\" type=\"text\" name=\"zip\" [(ngModel)]=\"evangelist.geoAddress.zip\"\n             placeholder=\"Zip\" #zip=\"ngModel\" id=\"zip\" required>\n      <div *ngIf=\"f.submitted && !zip.valid\" class=\"help-block\">Zip is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !country.valid }\">\n      <label for=\"country\">Country</label>\n      <input class=\"form-control\" type=\"text\" name=\"country\" [(ngModel)]=\"evangelist.geoAddress.country\"\n             placeholder=\"Country\" #country=\"ngModel\" id=\"country\" required>\n      <div *ngIf=\"f.submitted && !country.valid\" class=\"help-block\">Country is required</div>\n    </div>\n\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !localToken.valid }\">\n      <label for=\"localToken\">Local Token</label>\n      <select id=\"localToken\" name=\"localToken\" class=\"form-control custom-select\"  [(ngModel)]=\"evangelist.contractAddress\"\n              #localToken=\"ngModel\" required>\n        <option value=\"\">Choose...</option>\n        <option *ngFor=\"let localToken of localTokens\" value=\"{{localToken.contractAddress}}\">{{localToken.localityCode}}</option>\n      </select>\n      <div *ngIf=\"f.submitted && !localToken.valid\" class=\"help-block\">Must choose a local token</div>\n    </div>\n\n\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">Register</button>\n      <img *ngIf=\"loading\"\n           src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n    </div>\n\n  </form>\n</div>\n"
 
 /***/ }),
 
@@ -833,12 +955,16 @@ var _a, _b, _c, _d, _e;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Pages_register_evangelist_page_register_evangelist_page_component__ = __webpack_require__("./src/app/Pages/register-evangelist-page/register-evangelist-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Pages_register_user_page_register_user_page_component__ = __webpack_require__("./src/app/Pages/register-user-page/register-user-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Pages_forgot_password_forgot_password_component__ = __webpack_require__("./src/app/Pages/forgot-password/forgot-password.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Pages_change_password_change_password_component__ = __webpack_require__("./src/app/Pages/change-password/change-password.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Pages_evangelist_home_page_evangelist_home_page_component__ = __webpack_require__("./src/app/Pages/evangelist-home-page/evangelist-home-page.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -878,10 +1004,16 @@ var routes = [
         path: 'forgot-password', component: __WEBPACK_IMPORTED_MODULE_12__Pages_forgot_password_forgot_password_component__["a" /* ForgotPasswordComponent */]
     },
     {
+        path: 'change-password', component: __WEBPACK_IMPORTED_MODULE_13__Pages_change_password_change_password_component__["a" /* ChangePasswordComponent */]
+    },
+    {
         path: 'register-user', component: __WEBPACK_IMPORTED_MODULE_11__Pages_register_user_page_register_user_page_component__["a" /* RegisterUserPageComponent */]
     },
     {
         path: 'register-evangelist', component: __WEBPACK_IMPORTED_MODULE_10__Pages_register_evangelist_page_register_evangelist_page_component__["a" /* RegisterEvngelistPageComponent */]
+    },
+    {
+        path: 'evangelist-home-page', component: __WEBPACK_IMPORTED_MODULE_14__Pages_evangelist_home_page_evangelist_home_page_component__["a" /* EvangelistHomePageComponent */]
     }
 ];
 var AppRoutingModule = (function () {
@@ -910,7 +1042,7 @@ module.exports = "\r\n.allPages {\r\n\r\n  font-family: Arial, Helvetica, sans-s
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n\n<div class=\"allPages\">\n\n  <div *ngIf=\"getUser() === null\" class=\"login\">\n    <a href=\"/login/\">\n      <button type=\"button\" class=\"btn btn-primary\">Login</button>\n    </a>\n    <br>\n    <a href=\"/register-user/\">Register</a>\n  </div>\n  <div *ngIf=\"getUser() !== null\" class=\"login\">\n    <div class=\"btn-group\">\n      <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\"\n              aria-haspopup=\"true\" aria-expanded=\"false\" id=\"dropdownMenuButton\" >\n        {{getUser().email}}\n      </button>\n      <div class=\"dropdown-menu\">\n        <a class=\"dropdown-item\" href=\"#\">&nbsp;Change Password</a>\n        <a class=\"dropdown-item\" href=\"/register-evangelist\">&nbsp;Register Evangelist</a>\n        <div class=\"dropdown-divider\"><hr></div>\n        <a class=\"dropdown-item\" (click)=\"logout()\">&nbsp;Logout</a>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"logo\">\n    <a href=\"/\">{{title}}</a>\n  </div>\n\n  <app-nav-bar></app-nav-bar>\n  <br>\n  <router-outlet></router-outlet>\n\n</div>\n"
+module.exports = "\n\n\n<div class=\"allPages\">\n\n  <div *ngIf=\"getUser() === null\" class=\"login\">\n    <a href=\"/login/\">\n      <button type=\"button\" class=\"btn btn-primary\">Login</button>\n    </a>\n    <br>\n    <a href=\"/register-user/\">Register</a>\n  </div>\n  <div *ngIf=\"getUser() !== null\" class=\"login\">\n    <div class=\"btn-group\">\n      <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\"\n              aria-haspopup=\"true\" aria-expanded=\"false\" id=\"dropdownMenuButton\" >\n        {{getUser().email}}\n      </button>\n      <div class=\"dropdown-menu\">\n        <a class=\"dropdown-item\" href=\"/change-password\">&nbsp;Change Password</a>\n        <a *ngIf=\"getUser().evangelistId === 0\" class=\"dropdown-item\" href=\"/register-evangelist\">&nbsp;Register as Evangelist</a>\n        <div class=\"dropdown-divider\"><hr></div>\n        <a class=\"dropdown-item\" href=\"\" (click)=\"logout()\">&nbsp;Logout</a>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"logo\">\n    <a href=\"/\">{{title}}</a>\n  </div>\n\n  <app-nav-bar></app-nav-bar>\n  <br>\n  <router-outlet></router-outlet>\n\n</div>\n"
 
 /***/ }),
 
@@ -988,12 +1120,16 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__Pages_register_evangelist_page_register_evangelist_page_component__ = __webpack_require__("./src/app/Pages/register-evangelist-page/register-evangelist-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__Pages_register_user_page_register_user_page_component__ = __webpack_require__("./src/app/Pages/register-user-page/register-user-page.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__Pages_forgot_password_forgot_password_component__ = __webpack_require__("./src/app/Pages/forgot-password/forgot-password.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__Pages_change_password_change_password_component__ = __webpack_require__("./src/app/Pages/change-password/change-password.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__Pages_evangelist_home_page_evangelist_home_page_component__ = __webpack_require__("./src/app/Pages/evangelist-home-page/evangelist-home-page.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -1034,7 +1170,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_16__Pages_login_page_login_page_component__["a" /* LoginPageComponent */],
             __WEBPACK_IMPORTED_MODULE_17__Pages_register_evangelist_page_register_evangelist_page_component__["a" /* RegisterEvngelistPageComponent */],
             __WEBPACK_IMPORTED_MODULE_18__Pages_register_user_page_register_user_page_component__["a" /* RegisterUserPageComponent */],
-            __WEBPACK_IMPORTED_MODULE_19__Pages_forgot_password_forgot_password_component__["a" /* ForgotPasswordComponent */]
+            __WEBPACK_IMPORTED_MODULE_19__Pages_forgot_password_forgot_password_component__["a" /* ForgotPasswordComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__Pages_change_password_change_password_component__["a" /* ChangePasswordComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__Pages_evangelist_home_page_evangelist_home_page_component__["a" /* EvangelistHomePageComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["a" /* BrowserModule */],
@@ -1122,6 +1260,7 @@ var UserService = (function () {
     function UserService(http) {
         this.http = http;
         this.user = null;
+        this.evangelist = null;
         this.baseUrl = 'https://api.puremoney.tech/api/v1/';
         // Set the configuration settings
         this.credentials = {
@@ -1178,11 +1317,10 @@ var UserService = (function () {
         // remove user from local storage to log user out
         localStorage.removeItem('accessToken');
         this.user = null;
+        this.evangelist = null;
     };
     UserService.prototype.createEvangelist = function (evangelist) {
         var _this = this;
-        evangelist.id = 0;
-        evangelist.status = 0;
         return this.getGeoCode(evangelist.geoAddress.street1 + "\n    " + evangelist.geoAddress.street2 + "\n    " + evangelist.geoAddress.city + "\n    " + evangelist.geoAddress.stateOrProvince + "\n    " + evangelist.geoAddress.zip + "\n    " + evangelist.geoAddress.country)
             .then(function (result) {
             var res = JSON.parse(result._body);
@@ -1192,20 +1330,38 @@ var UserService = (function () {
                 res.resourceSets[0].resources[0].address.adminDistrict + ' ' +
                 res.resourceSets[0].resources[0].address.adminDistrict2 + ' ' +
                 res.resourceSets[0].resources[0].address.countryRegion;
+            _this.evangelist = evangelist;
+            _this.evangelist.id = 0;
+            _this.evangelist.status = 0;
             return _this.http.post(_this.baseUrl + 'database/evangelist', evangelist, _this.httpOptions)
                 .toPromise()
-                .then(function (res) {
+                .then(function (res1) {
                 // assign id to current user
+                var ev = JSON.parse(res1._body);
+                _this.evangelist.id = ev.id;
+                _this.evangelist.status = ev.status;
+                _this.user.evangelistId = ev.id;
+            })
+                .catch(function () {
+                _this.evangelist = null;
             });
         });
     };
     UserService.prototype.getEvangelistById = function (id) {
+        var _this = this;
         return this.http.get(this.baseUrl + ("database/evangelist/id/" + id), this.getHttpOptions())
             .toPromise()
-            .then();
+            .then(function (ev) {
+            _this.evangelist = ev;
+        });
     };
     UserService.prototype.createUser = function (user) {
         return this.http.post(this.baseUrl + 'Account/Register', user)
+            .toPromise()
+            .then();
+    };
+    UserService.prototype.changePassword = function (model) {
+        return this.http.post(this.baseUrl + 'Account/ChangePassword', model)
             .toPromise()
             .then();
     };
