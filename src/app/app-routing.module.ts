@@ -11,6 +11,8 @@ import {RouterModule, Routes} from '@angular/router'
 import {RegisterEvngelistPageComponent} from './Pages/register-evangelist-page/register-evangelist-page.component'
 import {RegisterUserPageComponent} from './Pages/register-user-page/register-user-page.component'
 import {ForgotPasswordComponent} from './Pages/forgot-password/forgot-password.component'
+import {ChangePasswordComponent} from './Pages/change-password/change-password.component'
+import {EvangelistHomePageComponent} from './Pages/evangelist-home-page/evangelist-home-page.component'
 
 
 const routes: Routes = [
@@ -39,10 +41,16 @@ const routes: Routes = [
     path: 'forgot-password', component: ForgotPasswordComponent
   },
   {
+    path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuardService]
+  },
+  {
     path: 'register-user', component: RegisterUserPageComponent
   },
   {
-    path: 'register-evangelist', component: RegisterEvngelistPageComponent
+    path: 'register-evangelist', component: RegisterEvngelistPageComponent, canActivate: [AuthGuardService]
+  },
+  {
+    path: 'evangelist-home-page', component: EvangelistHomePageComponent, canActivate: [AuthGuardService]
   }
 ]
 

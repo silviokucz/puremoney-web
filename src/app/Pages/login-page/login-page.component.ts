@@ -24,9 +24,6 @@ export class LoginPageComponent implements OnInit {
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
-
-    // todo remove this
-    this.modelLogin = {username: 'silvio1@host.com', password: 'Aa1234567*'}
   }
 
   login() {
@@ -37,27 +34,17 @@ export class LoginPageComponent implements OnInit {
 
           this.userService.getUserInfo()
             .then((info: any) => {
-              console.log(JSON.stringify(info))
+              if (this.userService.user.EvangelistId !== 0) {
+                this.userService.refresh()
 
-              // get evengelist data
-              const userInfo = JSON.parse(info._body)
-              this.userService.user.evangelistId = userInfo.EvangelistId
+                this.router.navigate(['/evangelist-home-page'])
+                return false
 
-              if (this.userService.user.evangelistId !== 0) {
-                this.userService.getEvangelistById(this.userService.user.evangelistId)
-                  .then((evangelist) => {
-                    console.log(JSON.stringify(evangelist))
-                    this.router.navigate([this.returnUrl])
-                  })
-                  .catch(error => {
-                    alert(JSON.stringify(error))
-                    this.loading = false
-                    this.modelLogin = {}
-                  })
+              } else {
+                this.router.navigate([this.returnUrl])
+                return false
+
               }
-
-              this.router.navigate([this.returnUrl])
-
             })
             .catch(error => {
               alert(JSON.stringify(error))

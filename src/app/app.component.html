@@ -4,33 +4,35 @@
 <div class="allPages">
 
   <div *ngIf="getUser() === null" class="login">
-    <a href="/login/">
+    <a [routerLink]="['/login']">
       <button type="button" class="btn btn-primary">Login</button>
     </a>
     <br>
-    <a href="/register-user/">Register</a>
+    <a [routerLink]="['/register-user']">Register</a>
   </div>
   <div *ngIf="getUser() !== null" class="login">
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton" >
-        {{getUser().email}}
+        {{getUser().Email}}
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">&nbsp;Change Password</a>
-        <a class="dropdown-item" href="/register-evangelist">&nbsp;Register Evangelist</a>
+        <a class="dropdown-item" [routerLink]="['/change-password']">&nbsp;Change Password</a>
+        <a *ngIf="getUser().EvangelistId === 0" class="dropdown-item" [routerLink]="['/register-evangelist']">&nbsp;Register as Evangelist</a>
         <div class="dropdown-divider"><hr></div>
-        <a class="dropdown-item" (click)="logout()">&nbsp;Logout</a>
+        <a class="dropdown-item" href="" (click)="logout()">&nbsp;Logout</a>
       </div>
     </div>
   </div>
 
   <div class="logo">
-    <a href="/">{{title}}</a>
+    <a [routerLink]="['/']">{{title}}</a>
   </div>
 
   <app-nav-bar></app-nav-bar>
   <br>
   <router-outlet></router-outlet>
+
+  <app-footer></app-footer>
 
 </div>

@@ -1,26 +1,27 @@
-import {Component} from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {UserService} from '../../services/user.service'
 import {Router} from '@angular/router'
-import {User} from '../../../models/user'
 
 @Component({
-  selector: 'app-register-user-page',
-  templateUrl: './register-user-page.component.html',
-  styleUrls: ['./register-user-page.component.css']
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.css']
 })
-export class RegisterUserPageComponent {
+export class ChangePasswordComponent implements OnInit {
 
-  model: User
+  model = {OldPassword: '', NewPassword: '', ConfirmPassword: ''}
   loading = false
 
   constructor(private router: Router,
               private userService: UserService) {
-    this.model = new User()
   }
 
-  register() {
+  ngOnInit() {
+  }
+
+  changePassword() {
     this.loading = true
-    this.userService.createUser(this.model)
+    this.userService.changePassword(this.model)
       .then(
         data => {
           this.router.navigate(['/login'])

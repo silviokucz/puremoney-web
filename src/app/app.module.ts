@@ -17,7 +17,9 @@ import {FooterComponent} from './UI/footer/footer.component'
 import {LoginPageComponent} from './Pages/login-page/login-page.component'
 import {RegisterEvngelistPageComponent} from './Pages/register-evangelist-page/register-evangelist-page.component'
 import {RegisterUserPageComponent} from './Pages/register-user-page/register-user-page.component';
-import { ForgotPasswordComponent } from './Pages/forgot-password/forgot-password.component'
+import { ForgotPasswordComponent } from './Pages/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './Pages/change-password/change-password.component';
+import { EvangelistHomePageComponent } from './Pages/evangelist-home-page/evangelist-home-page.component'
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { ForgotPasswordComponent } from './Pages/forgot-password/forgot-password
     LoginPageComponent,
     RegisterEvngelistPageComponent,
     RegisterUserPageComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
+    EvangelistHomePageComponent
   ],
   imports: [
     BrowserModule,

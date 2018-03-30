@@ -9,25 +9,11 @@ declare var require: any
 export class UserService {
 
   public user: User = null
+  public evangelist: Evangelist = null
+  public localToken: any = {}
 
   private httpOptions
   private baseUrl = 'https://api.puremoney.tech/api/v1/'
-
-  constructor(private http: Http) {
-    const token = JSON.parse(localStorage.getItem('accessToken'))
-    if (token) {
-      this.user = new User()
-      this.user.email = token.token.userName
-
-      this.httpOptions = {
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token.token.access_token
-        })
-      }
-    }
-  }
-
   // Set the configuration settings
   private credentials = {
     client: {
@@ -39,8 +25,49 @@ export class UserService {
       tokenPath: '/token'
     }
   }
-
   oauth2 = require('simple-oauth2').create(this.credentials)
+
+  constructor(private http: Http) {
+    this.prepareHeaders()
+    this.refresh()
+  }
+
+  prepareHeaders() {
+    const token = JSON.parse(localStorage.getItem('accessToken'))
+    if (token) {
+      this.user = new User()
+      this.user.Email = token.token.userName
+
+      this.httpOptions = {
+        headers: new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token.token.access_token
+        })
+      }
+    }
+  }
+
+  public refresh() {
+    if (this.httpOptions) {
+      this.getUserInfo()
+        .then(() => {
+          this.getEvangelistById(this.user.EvangelistId)
+            .then(() => {
+              this.getLocalTokens()
+                .then((res: any) => {
+
+                  const list = JSON.parse(res._body)
+                  list.forEach((tk) => {
+                    if (tk.localityCode === this.evangelist.geoAddress.geoTerritory) {
+                      this.localToken = tk
+                    }
+                  })
+                })
+            })
+        })
+    }
+  }
+
 
   login(username: string, password: string) {
 
@@ -62,9 +89,10 @@ export class UserService {
 
             localStorage.setItem(`accessToken`, JSON.stringify(accessToken))
             console.log('accessToken in storage: ', localStorage.getItem(`accessToken`))
+            this.prepareHeaders()
 
             this.user = new User()
-            this.user.email = accessToken.token.userName
+            this.user.Email = accessToken.token.userName
 
             return accessToken
           }, err => {
@@ -80,12 +108,11 @@ export class UserService {
     // remove user from local storage to log user out
     localStorage.removeItem('accessToken')
     this.user = null
+    this.evangelist = null
   }
 
   createEvangelist(evangelist: Evangelist) {
 
-    evangelist.id = 0
-    evangelist.status = 0
 
     return this.getGeoCode(`${evangelist.geoAddress.street1}
     ${evangelist.geoAddress.street2}
@@ -104,12 +131,29 @@ export class UserService {
           res.resourceSets[0].resources[0].address.adminDistrict2 + ' ' +
           res.resourceSets[0].resources[0].address.countryRegion
 
+        this.evangelist = evangelist
+        this.evangelist.id = 0
+        this.evangelist.status = 0
+
+
         return this.http.post(this.baseUrl + 'database/evangelist', evangelist, this.httpOptions)
           .toPromise()
-          .then((res) => {
+          .then((res1: any) => {
             // assign id to current user
+            const ev: any = JSON.parse(res1._body)
+            this.evangelist.id = ev.id
+            this.evangelist.status = ev.status
+            this.user.EvangelistId = ev.id
+          })
+          .catch((error) => {
+            console.log(error)
+            this.evangelist = null
           })
 
+      })
+      .catch((error) => {
+        console.log(error)
+        this.evangelist = null
       })
   }
 
@@ -117,8 +161,9 @@ export class UserService {
 
     return this.http.get(this.baseUrl + `database/evangelist/id/${id}`, this.getHttpOptions())
       .toPromise()
-      .then()
-
+      .then((res: any) => {
+        this.evangelist = JSON.parse(res._body)
+      })
   }
 
   createUser(user: User) {
@@ -128,10 +173,63 @@ export class UserService {
       .then()
   }
 
+  buyLocalTokens(territoryContract: string, howMany: number, howMuch: number) {
+
+    const body = {
+      'territoryContract': territoryContract,
+      'howMany': howMany
+    }
+
+    const data = {
+      territoryContract: territoryContract,
+      howMany: howMany,
+      howMuch: 10.00
+    }
+
+    const qrystring = Object.keys(data)
+      .map(key => key + '=' + encodeURIComponent(data[key]))
+      .join('&')
+
+    const url = this.baseUrl + 'contracts/localtoken/buylocaltokens?' + qrystring
+
+    console.log('buy tokens url ', url)
+    return this.http.put(url, body, this.getHttpOptions())
+      .toPromise()
+      .then()
+  }
+
+  getTokenBalance(territoryContract: string, account: string) {
+
+    const data = {
+      territoryContract: territoryContract,
+      account: account
+    }
+
+    const qrystring = Object.keys(data)
+      .map(key => key + '=' + encodeURIComponent(data[key]))
+      .join('&')
+
+    const url = this.baseUrl + 'contracts/localtoken/gettokenbalance?' + qrystring
+
+    console.log('gettokenbalance url ', url)
+    return this.http.get(url, this.getHttpOptions())
+      .toPromise()
+      .then()
+  }
+
+  changePassword(model) {
+
+    return this.http.post(this.baseUrl + 'Account/ChangePassword', model)
+      .toPromise()
+      .then()
+  }
+
   public getUserInfo() {
     return this.http.get(this.baseUrl + 'account/userinfo', this.getHttpOptions())
       .toPromise()
-      .then()
+      .then((res: any) => {
+        this.user = JSON.parse(res._body)
+      })
   }
 
   public getLocalTokens() {

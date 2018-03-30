@@ -10,7 +10,7 @@ import {Router} from '@angular/router'
 export class AppComponent {
   title = 'Pure Money Tech'
 
-  constructor(private userService: UserService, private router: Router,) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   private getUser() {
@@ -20,5 +20,7 @@ export class AppComponent {
   private logout() {
     this.userService.logout()
     this.router.navigate(['/'])
+    return false
+
   }
 }

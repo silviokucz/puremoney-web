@@ -50,6 +50,8 @@ export class RegisterEvngelistPageComponent implements OnInit {
         data => {
 
           this.router.navigate(['/'])
+          return false
+
         },
         error => {
           alert((error.statusText || error) + error)

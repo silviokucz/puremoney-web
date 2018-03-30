@@ -1,5 +1,5 @@
 export class User {
-  email: string
-  evangelistId: number
-  vendorId: number
+  Email: string
+  EvangelistId: number
+  VendorId: number
 }
