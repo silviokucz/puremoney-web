@@ -53,7 +53,7 @@ module.exports = ""
 /***/ "./src/app/Pages/about-page/about-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  about-page works!\n</p>\n<app-footer></app-footer>"
+module.exports = "<p>\n  about-page works!\n</p>\n"
 
 /***/ }),
 
@@ -257,7 +257,7 @@ module.exports = ""
 /***/ "./src/app/Pages/contact-page/contact-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  contact-page works!\n</p>\n<app-footer></app-footer>"
+module.exports = "<p>\n  contact-page works!\n</p>\n"
 
 /***/ }),
 
@@ -432,7 +432,7 @@ module.exports = ".textOver {\r\n  margin-top: -150px;\r\n  opacity: 1;\r\n  tex
 /***/ "./src/app/Pages/home-page/home-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align: center;\">\n  <img src=\"../../../assets/images/homePagePicture.jpg\" style=\"vertical-align: middle; width:60%;\">\n</div>\n<div class=\"textOver\">\n  <h1 class=\"page-title\">Ethereum Evangelist Network</h1>\n  <div class=\"page-description\"></div>\n</div>\n<div style=\"text-align: center; margin-top: 150px;\">\n  <h2>Ethereum Evangelism?</h2>\n  <p class=\"parag\">\n    In a nutshell, you sell the idea of accepting ethers to your local groceries, shops, vendors, and others. You\n    demonstrate the easiest-to-use Point of Sale (POS) app to prospects, install the POS app to the vendor's smartphone,\n    sit back, relax, and enjoy the incoming transaction fees (in ethers, no less) ...\n  </p>\n\n  <p class=\"parag\">\n    Universal Pure Money Tokens (PMT) allows you to participate in Ethereum evangelism without using much capital.How\n    else can you start a business with just US$300? That's all you need to get into this opportunity, although a larger\n    investment can improve your chances of success.(Stay tuned. We are still working out the details. If you want\n    updates in your inbox and you haven't signed up yet, simply click the refresh button to get the signup screen.)\n  </p>\n\n  <h2>Take Action</h2>\n  <p class=\"parag\">\n    Join us now! Your evangelism starts by purchasing universal evangelist tokens. These universal tokens are usable\n    anywhere, and grant you the right to be an Ethereum Evangelist in your area. You can purchase them on our website\n    right now.\n  </p>\n</div>\n<br>\n<app-footer></app-footer>\n"
+module.exports = "<div style=\"text-align: center;\">\n  <img src=\"../../../assets/images/homePagePicture.jpg\" style=\"vertical-align: middle; width:60%;\">\n</div>\n<div class=\"textOver\">\n  <h1 class=\"page-title\">Ethereum Evangelist Network</h1>\n  <div class=\"page-description\"></div>\n</div>\n<div style=\"text-align: center; margin-top: 150px;\">\n  <h2>Ethereum Evangelism?</h2>\n  <p class=\"parag\">\n    In a nutshell, you sell the idea of accepting ethers to your local groceries, shops, vendors, and others. You\n    demonstrate the easiest-to-use Point of Sale (POS) app to prospects, install the POS app to the vendor's smartphone,\n    sit back, relax, and enjoy the incoming transaction fees (in ethers, no less) ...\n  </p>\n\n  <p class=\"parag\">\n    Universal Pure Money Tokens (PMT) allows you to participate in Ethereum evangelism without using much capital.How\n    else can you start a business with just US$300? That's all you need to get into this opportunity, although a larger\n    investment can improve your chances of success.(Stay tuned. We are still working out the details. If you want\n    updates in your inbox and you haven't signed up yet, simply click the refresh button to get the signup screen.)\n  </p>\n\n  <h2>Take Action</h2>\n  <p class=\"parag\">\n    Join us now! Your evangelism starts by purchasing universal evangelist tokens. These universal tokens are usable\n    anywhere, and grant you the right to be an Ethereum Evangelist in your area. You can purchase them on our website\n    right now.\n  </p>\n</div>\n<br>\n\n"
 
 /***/ }),
 
@@ -493,7 +493,7 @@ module.exports = ""
 /***/ "./src/app/Pages/how-it-works-page/how-it-works-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  how-it-works-page works!\n</p>\n<app-footer></app-footer>"
+module.exports = "<p>\n  how-it-works-page works!\n</p>\n"
 
 /***/ }),
 
@@ -543,7 +543,7 @@ module.exports = ".loginForm {\r\n  width: 60%;\r\n  margin-left: 20%;\r\n}\r\n"
 /***/ "./src/app/Pages/login-page/login-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p></p>\n<!-- <div class=\"col-md-6 col-md-offset-3 loginForm\"> -->\n<div class=\"loginForm\">\n  <h2>Login</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid }\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"modelLogin.username\" #username=\"ngModel\"\n             required/>\n      <div *ngIf=\"f.submitted && !username.valid\" class=\"help-block\">Username is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"modelLogin.password\" #password=\"ngModel\"\n             required/>\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n    </div>\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\n      <img *ngIf=\"loading\"\n           src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n      <a [routerLink]=\"['/register-user']\" class=\"btn btn-link\">Register</a>\n      <a [routerLink]=\"['/forgot-password']\" class=\"btn btn-link\">Forgot Password</a>\n    </div>\n  </form>\n</div>\n<br>\n<app-footer></app-footer>\n"
+module.exports = "<p></p>\n<!-- <div class=\"col-md-6 col-md-offset-3 loginForm\"> -->\n<div class=\"loginForm\">\n  <h2>Login</h2>\n  <form name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !username.valid }\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"modelLogin.username\" #username=\"ngModel\"\n             required/>\n      <div *ngIf=\"f.submitted && !username.valid\" class=\"help-block\">Username is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"modelLogin.password\" #password=\"ngModel\"\n             required/>\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n    </div>\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\n      <img *ngIf=\"loading\"\n           src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n      <a [routerLink]=\"['/register-user']\" class=\"btn btn-link\">Register</a>\n      <a [routerLink]=\"['/forgot-password']\" class=\"btn btn-link\">Forgot Password</a>\n    </div>\n  </form>\n</div>\n<br>\n\n"
 
 /***/ }),
 
@@ -580,8 +580,6 @@ var LoginPageComponent = (function () {
         this.userService.logout();
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-        // todo remove this
-        this.modelLogin = { username: 'silvio1@host.com', password: 'Aa1234567*' };
     };
     LoginPageComponent.prototype.login = function () {
         var _this = this;
@@ -637,7 +635,7 @@ module.exports = ""
 /***/ "./src/app/Pages/mission-page/mission-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  Mission Statement......\n</p>\n<app-footer></app-footer>"
+module.exports = "<p>\n  Mission Statement......\n</p>\n"
 
 /***/ }),
 
@@ -853,7 +851,7 @@ module.exports = ""
 /***/ "./src/app/UI/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<br>\n<hr>\n<br>\n<h2>PARTNERS</h2>"
+module.exports = "<br>\n<hr>\n<a href=\"../assets/documents/2018.02.12 AGR Terms and Conditions.pdf\" target=\"_blank\">Terms and Conditions</a>\n&nbsp;&nbsp;&nbsp;\n<a href=\"../assets/documents/2018.02.12 Privacy Policy .pdf\" target=\"_blank\">Privacy Policy</a>\n<br>\n<h2>PARTNERS</h2>\n"
 
 /***/ }),
 
@@ -1085,7 +1083,7 @@ module.exports = "\r\n.allPages {\r\n\r\n  font-family: Arial, Helvetica, sans-s
 /***/ "./src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n\n<div class=\"allPages\">\n\n  <div *ngIf=\"getUser() === null\" class=\"login\">\n    <a [routerLink]=\"['/login']\">\n      <button type=\"button\" class=\"btn btn-primary\">Login</button>\n    </a>\n    <br>\n    <a [routerLink]=\"['/register-user']\">Register</a>\n  </div>\n  <div *ngIf=\"getUser() !== null\" class=\"login\">\n    <div class=\"btn-group\">\n      <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\"\n              aria-haspopup=\"true\" aria-expanded=\"false\" id=\"dropdownMenuButton\" >\n        {{getUser().Email}}\n      </button>\n      <div class=\"dropdown-menu\">\n        <a class=\"dropdown-item\" [routerLink]=\"['/change-password']\">&nbsp;Change Password</a>\n        <a *ngIf=\"getUser().EvangelistId === 0\" class=\"dropdown-item\" [routerLink]=\"['/register-evangelist']\">&nbsp;Register as Evangelist</a>\n        <div class=\"dropdown-divider\"><hr></div>\n        <a class=\"dropdown-item\" href=\"\" (click)=\"logout()\">&nbsp;Logout</a>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"logo\">\n    <a [routerLink]=\"['/']\">{{title}}</a>\n  </div>\n\n  <app-nav-bar></app-nav-bar>\n  <br>\n  <router-outlet></router-outlet>\n\n</div>\n"
+module.exports = "\n\n\n<div class=\"allPages\">\n\n  <div *ngIf=\"getUser() === null\" class=\"login\">\n    <a [routerLink]=\"['/login']\">\n      <button type=\"button\" class=\"btn btn-primary\">Login</button>\n    </a>\n    <br>\n    <a [routerLink]=\"['/register-user']\">Register</a>\n  </div>\n  <div *ngIf=\"getUser() !== null\" class=\"login\">\n    <div class=\"btn-group\">\n      <button type=\"button\" class=\"btn btn-primary dropdown-toggle\" data-toggle=\"dropdown\"\n              aria-haspopup=\"true\" aria-expanded=\"false\" id=\"dropdownMenuButton\" >\n        {{getUser().Email}}\n      </button>\n      <div class=\"dropdown-menu\">\n        <a class=\"dropdown-item\" [routerLink]=\"['/change-password']\">&nbsp;Change Password</a>\n        <a *ngIf=\"getUser().EvangelistId === 0\" class=\"dropdown-item\" [routerLink]=\"['/register-evangelist']\">&nbsp;Register as Evangelist</a>\n        <div class=\"dropdown-divider\"><hr></div>\n        <a class=\"dropdown-item\" href=\"\" (click)=\"logout()\">&nbsp;Logout</a>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"logo\">\n    <a [routerLink]=\"['/']\">{{title}}</a>\n  </div>\n\n  <app-nav-bar></app-nav-bar>\n  <br>\n  <router-outlet></router-outlet>\n\n  <app-footer></app-footer>\n\n</div>\n"
 
 /***/ }),
 
@@ -1337,21 +1335,23 @@ var UserService = (function () {
     };
     UserService.prototype.refresh = function () {
         var _this = this;
-        this.getUserInfo()
-            .then(function () {
-            _this.getEvangelistById(_this.user.EvangelistId)
+        if (this.httpOptions) {
+            this.getUserInfo()
                 .then(function () {
-                _this.getLocalTokens()
-                    .then(function (res) {
-                    var list = JSON.parse(res._body);
-                    list.forEach(function (tk) {
-                        if (tk.localityCode === _this.evangelist.geoAddress.geoTerritory) {
-                            _this.localToken = tk;
-                        }
+                _this.getEvangelistById(_this.user.EvangelistId)
+                    .then(function () {
+                    _this.getLocalTokens()
+                        .then(function (res) {
+                        var list = JSON.parse(res._body);
+                        list.forEach(function (tk) {
+                            if (tk.localityCode === _this.evangelist.geoAddress.geoTerritory) {
+                                _this.localToken = tk;
+                            }
+                        });
                     });
                 });
             });
-        });
+        }
     };
     UserService.prototype.login = function (username, password) {
         var _this = this;
