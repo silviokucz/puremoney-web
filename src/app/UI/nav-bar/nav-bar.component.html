@@ -1,30 +1,92 @@
-<div id="topNav">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation" #tougler>
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">
+    <img src="../assets/images/dark_logo_transparent_background.png" width="60" alt="" class="d-inline-block">
+  </a>
 
-  <ul>
 
-    <li class="nav-item">
-      <hr class="line">
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['/mission']" #mission>Mission</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['/how-it-works']" #howItWorks>How it works</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['/about']" #about>About</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['/contact']" #contact>Contact</a>
-    </li>
-    <li class="nav-item">
-      <a [routerLink]="['/pmt']" #pmt>Buy PMT</a>
-    </li>
-    <li class="nav-item">
-      <hr class="line">
-    </li>
-  </ul>
-  <div class="page-divider"></div>
-</div>
+  <!--<div class="collapse navbar-collapse" id="navbarTogglerDemo03">-->
+  <!--<hr class="line">-->
+  <!--<span class="nav-item">-->
+  <!--<a class="nav-link  active" [routerLink]="['/mission']" #mission>Mission</a>-->
+  <!--</span>-->
+  <!--<a class="nav-link nav-item active" [routerLink]="['/how-it-works']" #howItWorks>How it works</a>-->
+  <!--<a class="nav-link nav-item active" [routerLink]="['/about']" #about>About<span class="sr-only">(current)</span></a>-->
+  <!--<a class="nav-link nav-item active" [routerLink]="['/contact']" #contact>Contact<span-->
+  <!--class="sr-only">(current)</span></a>-->
+  <!--<a class="nav-link nav-item active" [routerLink]="['/pmt']" #pmt>Buy PMT<span class="sr-only">(current)</span></a>-->
+  <!--</div>-->
+
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <hr class="line">
+    <ul class="navbar-nav mr-auto mt-2 mt-sm-0">
+      <li class="nav-item active" (click)="onMenuClick()">
+        <a class="nav-link" [routerLink]="['/mission']" #mission>Mission<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active" (click)="onMenuClick()">
+        <a class="nav-link" [routerLink]="['/how-it-works']" #howItWorks>How it works<span
+          class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active" (click)="onMenuClick()">
+        <a class="nav-link" [routerLink]="['/about']" about>About<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active" (click)="onMenuClick()">
+        <a class="nav-link" [routerLink]="['/contact']" #contact>Contact<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active" (click)="onMenuClick()">
+        <a class="nav-link" [routerLink]="['/pmt']" #pmt>Buy PMT<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <hr class="line">
+
+  </div>
+  <!--<form class="form-inline my-2 my-lg-0">-->
+  <!--<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+  <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+  <!--</form>-->
+</nav>
+<div class="page-divider"></div>
+
+
+<!--<div id="topNav">-->
+<!--<ul>-->
+
+<!--<li class="nav-item">-->
+<!--<hr class="line">-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a [routerLink]="['/mission']" #mission>Mission</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a [routerLink]="['/how-it-works']" #howItWorks>How it works</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a [routerLink]="['/about']" #about>About</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a [routerLink]="['/contact']" #contact>Contact</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a [routerLink]="['/pmt']" #pmt>Buy PMT</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<hr class="line">-->
+<!--</li>-->
+<!--</ul>-->
+<!--<div class="page-divider"></div>-->
+<!--</div>-->
+
 <br>
 <br>

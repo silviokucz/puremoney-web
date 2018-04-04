@@ -1,38 +1,56 @@
+<div class="container-fluid border border-dark" style="margin: 2px 10px 10px 2px; width: 99%">
 
-
-
-<div class="allPages">
-
-  <div *ngIf="getUser() === null" class="login">
-    <a [routerLink]="['/login']">
-      <button type="button" class="btn btn-primary">Login</button>
-    </a>
-    <br>
-    <a [routerLink]="['/register-user']">Register</a>
-  </div>
-  <div *ngIf="getUser() !== null" class="login">
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton" >
-        {{getUser().Email}}
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" [routerLink]="['/change-password']">&nbsp;Change Password</a>
-        <a *ngIf="getUser().EvangelistId === 0" class="dropdown-item" [routerLink]="['/register-evangelist']">&nbsp;Register as Evangelist</a>
-        <div class="dropdown-divider"><hr></div>
-        <a class="dropdown-item" href="" (click)="logout()">&nbsp;Logout</a>
-      </div>
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+      <a class="logo" [routerLink]="['/']">{{title}}</a>
+    </div>
+    <div class="col">
     </div>
   </div>
 
-  <div class="logo">
-    <a [routerLink]="['/']">{{title}}</a>
+  <div class="row">
+    <div class="col-10  border border-warning">
+      <app-nav-bar></app-nav-bar>
+    </div>
+    <div class="col  border border-primary">
+      <div *ngIf="getUser() === null" class="login">
+        <a [routerLink]="['/login']">
+          <button type="button" class="btn btn-primary">Login</button>
+        </a>
+        <br>
+        <a [routerLink]="['/register-user']">Register</a>
+      </div>
+      <div *ngIf="getUser() !== null" class="login">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" id="dropdownMenuButton">
+            {{getUser().Email}}
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['/change-password']">&nbsp;Change Password</a>
+            <a *ngIf="getUser().EvangelistId === 0" class="dropdown-item" [routerLink]="['/register-evangelist']">&nbsp;Register
+              as Evangelist</a>
+            <div class="dropdown-divider">
+              <hr>
+            </div>
+            <a class="dropdown-item" href="" (click)="logout()">&nbsp;Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 
-  <app-nav-bar></app-nav-bar>
+
+
   <br>
   <router-outlet></router-outlet>
 
   <app-footer></app-footer>
 
 </div>
+
+
