@@ -1,0 +1,63 @@
+
+<head>
+  <meta charset="utf-8">
+  <title>PuremoneyWeb</title>
+  <base href="/">
+  <!doctype html>
+  <html lang="en">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+  <!--<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>-->
+  <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"/>-->
+
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+
+<body>
+<app-root>Loading...</app-root>
+
+<script>
+  window['__Zone_disable_IE_check'] = true;
+
+  window.addEventListener('load', function() {
+
+    // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+    if (typeof web3 !== 'undefined') {
+      // Use Mist/MetaMask's provider
+      web3js = new Web3(web3.currentProvider);
+    } else {
+      console.log('No web3? You should consider trying MetaMask!')
+      // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+      web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+    }
+
+    // Now you can start your app & access web3 freely:
+
+
+  })
+
+
+</script>
+
+
+<script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+<!--<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="styles.bundle.js"></script><script type="text/javascript" src="vendor.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body>
+</html>
