@@ -5,6 +5,8 @@ import {Evangelist} from '../../../models/evangelist '
 import {GeoAddress} from '../../../models/geoAddress'
 import {GeoAddressGeoCode} from '../../../models/geoAddressGeoCode'
 
+declare var web3: any
+
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-evangelist-page.component.html',
@@ -34,10 +36,25 @@ export class RegisterEvngelistPageComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    if (!web3 || !web3.currentProvider.isMetaMask) {
+      alert('you must install the Metamask browser extension to continue')
+    }
+
+
   }
 
   register() {
+    const defaultAccount = web3.eth.defaultAccount
+    if (!defaultAccount) {
+      alert('Please login to Metamask and/or create an account to continue')
+      return false
+    }
+
     this.loading = true
+
+    this.evangelist.ethAddress = defaultAccount
+
     if (this.evangelist.geoAddress.street2 === undefined) {
       this.evangelist.geoAddress.street2 = ''
     }
@@ -48,8 +65,14 @@ export class RegisterEvngelistPageComponent implements OnInit {
     this.userService.createEvangelist(this.evangelist)
       .then(
         data => {
+          this.loading = false
 
-          this.router.navigate(['/'])
+          if (!data) {
+            alert('There was  problem, please check data')
+          } else {
+            this.router.navigate(['/'])
+          }
+
           return false
 
         },
@@ -57,6 +80,10 @@ export class RegisterEvngelistPageComponent implements OnInit {
           alert((error.statusText || error) + error)
           this.loading = false
         })
+      .catch(error => {
+        alert((error.statusText || error) + error)
+        this.loading = false
+      })
   }
 
 }

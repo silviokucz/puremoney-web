@@ -47,13 +47,13 @@ export class LoginPageComponent implements OnInit {
               }
             })
             .catch(error => {
-              alert(JSON.stringify(error))
+              alert('login: ' + JSON.stringify(error))
               this.loading = false
               this.modelLogin = {}
             })
         },
         error => {
-          alert(JSON.stringify(error))
+          alert('login: ' + JSON.stringify(error))
           this.loading = false
           this.modelLogin = {}
         })

@@ -45,7 +45,7 @@ export class BuyPmtpageComponent implements OnInit {
 
       })
       .catch((error) => {
-        alert(JSON.stringify(error))
+        alert('buy: ' + JSON.stringify(error))
       })
 
   }

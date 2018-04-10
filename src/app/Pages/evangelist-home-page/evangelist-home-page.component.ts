@@ -8,16 +8,28 @@ import {UserService} from '../../services/user.service'
 })
 export class EvangelistHomePageComponent implements OnInit {
 
-  private tokenBalance: any = {}
+  private tokenBalance: any = 'Getting balance, Please wait ...'
+
+  // private oldBalance: number
 
   constructor(private userService: UserService) {
+    let oldBalance = Number(localStorage.getItem('evBal'))
+
+    if (!oldBalance) {
+      oldBalance = 0
+      localStorage.setItem('evBal', oldBalance.toString())
+    }
 
   }
 
   ngOnInit() {
-    setTimeout(() => {
+
+    // keep poling
+    setInterval(() => {
       this.getTokenBalance()
-    }, 5000)
+    }, 10000)
+
+
   }
 
   private getEvangelist() {
@@ -29,12 +41,25 @@ export class EvangelistHomePageComponent implements OnInit {
   }
 
   private getTokenBalance() {
+
     this.userService.getTokenBalance(this.userService.localToken.contractAddress, this.userService.evangelist.ethAddress)
       .then((res: any) => {
+        const oldBalance = Number(localStorage.getItem('evBal'))
         this.tokenBalance = JSON.parse(res._body)
+
+        if (this.tokenBalance !== oldBalance) {
+          console.log(`balance changed from ${oldBalance} to ${this.tokenBalance}`)
+
+          localStorage.setItem('evBal', this.tokenBalance.toString())
+
+          // approve with MetaMask
+
+        }
+
       })
       .catch((error) => {
-        alert(error)
+        alert('getTokenBalance: ' + error)
       })
+
   }
 }

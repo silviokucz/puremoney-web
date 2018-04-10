@@ -11,10 +11,10 @@
   </div>
 
   <div class="row">
-    <div class="col-10  border border-warning">
+    <div class="col-lg-9 col-sm-6 col-xs-10">
       <app-nav-bar></app-nav-bar>
     </div>
-    <div class="col  border border-primary">
+    <div class="col-lg-3 col-sm-6 col-xs-2">
       <div *ngIf="getUser() === null" class="login">
         <a [routerLink]="['/login']">
           <button type="button" class="btn btn-primary">Login</button>

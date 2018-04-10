@@ -51,19 +51,21 @@ export class UserService {
     if (this.httpOptions) {
       this.getUserInfo()
         .then(() => {
-          this.getEvangelistById(this.user.EvangelistId)
-            .then(() => {
-              this.getLocalTokens()
-                .then((res: any) => {
+          if (this.user.EvangelistId !== 0) {
+            this.getEvangelistById(this.user.EvangelistId)
+              .then(() => {
+                this.getLocalTokens()
+                  .then((res: any) => {
 
-                  const list = JSON.parse(res._body)
-                  list.forEach((tk) => {
-                    if (tk.localityCode === this.evangelist.geoAddress.geoTerritory) {
-                      this.localToken = tk
-                    }
+                    const list = JSON.parse(res._body)
+                    list.forEach((tk) => {
+                      if (tk.localityCode === this.evangelist.geoAddress.geoTerritory) {
+                        this.localToken = tk
+                      }
+                    })
                   })
-                })
-            })
+              })
+          }
         })
     }
   }
@@ -146,13 +148,13 @@ export class UserService {
             this.user.EvangelistId = ev.id
           })
           .catch((error) => {
-            console.log(error)
+            console.log('createEvangelist: ' + error)
             this.evangelist = null
           })
 
       })
       .catch((error) => {
-        console.log(error)
+        console.log('createEvangelist: ' + error)
         this.evangelist = null
       })
   }

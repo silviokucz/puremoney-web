@@ -14,10 +14,13 @@ export class HomePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.userService.evangelist) {
-      this.router.navigate(['/evangelist-home-page'])
-      return false
-    }
+    setTimeout(() => {
+      if (this.userService.evangelist) {
+        this.router.navigate(['/evangelist-home-page'])
+        return false
+      }
+    }, 1000)
+
   }
 
 }
